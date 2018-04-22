@@ -7,6 +7,7 @@ public class camMouseLook : MonoBehaviour {
     Vector2 smoothV;
     public float sensitivity = 5.0f;
     public float smoothing = 1.0f;
+    private float xRotate, yRotate;
 
     GameObject character;
 
@@ -19,14 +20,20 @@ public class camMouseLook : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        var mouseDirection = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
-        md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
-        smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
-        smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
+        mouseDirection = Vector2.Scale(mouseDirection, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
+        smoothV.y = Mathf.Lerp(smoothV.y, mouseDirection.y, 1f / smoothing);
+        smoothV.x = Mathf.Lerp(smoothV.x, mouseDirection.x, 1f / smoothing);
         mouseLook += smoothV;
 
-        transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        if (mouseLook.y > -60 && mouseLook.y < 80)
+            transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        if (mouseLook.y <= -60)
+            mouseLook.y = -60;
+        if (mouseLook.y >= 80)
+            mouseLook.y = 80;
+
         character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
-	}
+    }
 }
