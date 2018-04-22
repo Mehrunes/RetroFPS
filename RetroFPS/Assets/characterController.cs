@@ -48,18 +48,17 @@ public class characterController : MonoBehaviour
         characterRigidbody.useGravity = false;
         characterRigidbody.velocity = Vector3.zero;
         characterRigidbody.angularVelocity = Vector3.zero;
-        if 
         //transform.Translate(, jumpSpeed, -translation);
     }
 
-   /* private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if(!controller.isGrounded && hit.normal.y < 0.1f)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 characterRigidbody.velocity = new Vector3(0,jumpSpeed, 0);
         }
-   */ }
+    }
 
     private void OnCollisionStay(Collision c)
     {
