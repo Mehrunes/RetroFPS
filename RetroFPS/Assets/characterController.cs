@@ -24,31 +24,23 @@ public class characterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) == true && (jumpCounter < 1))
+        if ((Input.GetKeyDown(KeyCode.Space) == true) && (jumpCounter <= 1 ))
         {
+            jumpCounter++;
             characterRigidbody.velocity = Vector3.zero;
             characterRigidbody.angularVelocity = Vector3.zero;
             characterRigidbody.velocity += jumpSpeed * Vector3.up;
-            jumpCounter++;
         }
         translation = Input.GetAxis("Vertical") * speed;
         straffe = Input.GetAxis("Horizontal") * speed;
         translation *= Time.deltaTime;
         straffe *= Time.deltaTime;
-
         transform.Translate(straffe, 0, translation);
+
 
 
         if (Input.GetKeyDown("escape"))
             Cursor.lockState = CursorLockMode.None;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        characterRigidbody.useGravity = false;
-        characterRigidbody.velocity = Vector3.zero;
-        characterRigidbody.angularVelocity = Vector3.zero;
-        //transform.Translate(, jumpSpeed, -translation);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -56,20 +48,27 @@ public class characterController : MonoBehaviour
         if(!controller.isGrounded && hit.normal.y < 0.1f)
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                characterRigidbody.velocity = new Vector3(0,jumpSpeed, 0);
+            {
+                jumpCounter++;
+                characterRigidbody.velocity += jumpSpeed * Vector3.up; 
+            }
         }
     }
 
-    private void OnCollisionStay(Collision c)
+    private void OnCollisionEnter(Collision collision)
+    {
+        jumpCounter = 0;
+        isGrounded = true;
+    }
+
+  /*  private void OnCollisionStay(Collision c)
     {
         isGrounded = true;
-        characterRigidbody.useGravity = true;
-        jumpCounter = 0;  
     }
+  */ 
 
     private void OnCollisionExit(Collision c)
     {
         isGrounded = false;
-        characterRigidbody.useGravity = true;
     }
 }
