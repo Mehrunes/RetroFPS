@@ -1,0 +1,52 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class health : MonoBehaviour
+{
+
+    public Image currentHealthBar;
+    public Text ratioText;
+
+    public float hitpoint = 50;
+    private float maxHitpoint = 50;
+    // Use this for initialization
+    void Start()
+    {
+        UpdateHealthBar();
+    }
+
+    // Update is called once per frame
+    void UpdateHealthBar()
+    {
+        float ratio = (hitpoint / maxHitpoint);
+
+        if (ratio >= 0)
+        {
+            currentHealthBar.rectTransform.localScale = new Vector3(ratio, 1, 1);
+            ratioText.text = (ratio * 100).ToString() + "%";
+        }
+    }
+    private void TakeDamage(float demage)
+    {
+        hitpoint -= demage;
+        int hitpoint_int = (int)hitpoint;
+        if (hitpoint_int < 0)
+        {
+            hitpoint_int = 0;
+            Debug.Log("Dead!");
+        }
+        UpdateHealthBar();
+    }
+    void OnCollisionEnter(Collision col)
+    {
+
+        if (col.gameObject.name == "Damage")
+        {
+            TakeDamage(10);
+            Debug.Log("Health reduced to " + hitpoint);
+        }
+
+    }
+}
