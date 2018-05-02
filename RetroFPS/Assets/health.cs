@@ -9,8 +9,8 @@ public class health : MonoBehaviour
     public Image currentHealthBar;
     public Text ratioText;
 
-    public float hitpoint = 50;
-    private float maxHitpoint = 50;
+    public float hitpoint =100;
+    private float maxHitpoint = 100;
     // Use this for initialization
     void Start()
     {
@@ -20,7 +20,7 @@ public class health : MonoBehaviour
     // Update is called once per frame
     void UpdateHealthBar()
     {
-        float ratio = (hitpoint / maxHitpoint);
+        float ratio = (hitpoint / maxHitpoint);//%hp
 
         if (ratio >= 0)
         {
@@ -34,6 +34,7 @@ public class health : MonoBehaviour
         int hitpoint_int = (int)hitpoint;
         if (hitpoint_int < 0)
         {
+            hitpoint = 0;
             hitpoint_int = 0;
             Debug.Log("Dead!");
         }
@@ -44,7 +45,7 @@ public class health : MonoBehaviour
 
         if (col.gameObject.name == "Damage")
         {
-            TakeDamage(10);
+            TakeDamage(9);
             Debug.Log("Health reduced to " + hitpoint);
         }
 
