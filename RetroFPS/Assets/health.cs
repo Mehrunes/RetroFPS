@@ -28,7 +28,7 @@ public class health : MonoBehaviour
             ratioText.text = (ratio * 100).ToString() + "%";
         }
     }
-    private void TakeDamage(float demage)
+    public void TakeDamage(float demage)
     {
         hitpoint -= demage;
         int hitpoint_int = (int)hitpoint;
@@ -40,14 +40,5 @@ public class health : MonoBehaviour
         }
         UpdateHealthBar();
     }
-    void OnCollisionEnter(Collision col)
-    {
-
-        if (col.gameObject.name == "Damage")
-        {
-            TakeDamage(9);
-            Debug.Log("Health reduced to " + hitpoint);
-        }
-
-    }
+    
 }
