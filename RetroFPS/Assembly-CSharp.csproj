@@ -62,6 +62,7 @@
      <Compile Include="Assets\Testsprite\RobitTools.cs" />
      <Compile Include="Assets\Testsprite\rotation.cs" />
      <Compile Include="Assets\Testsprite\SpriteBillboard.cs" />
+     <Compile Include="Assets\WallDamagePenalty.cs" />
      <Compile Include="Assets\WallDemage.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

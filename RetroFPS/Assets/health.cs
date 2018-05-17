@@ -25,14 +25,14 @@ public class health : MonoBehaviour
         if (ratio >= 0)
         {
             currentHealthBar.rectTransform.localScale = new Vector3(ratio, 1, 1);
-            ratioText.text = (ratio * 100).ToString() + "%";
+            ratioText.text =System.Math.Round((ratio * 100),0).ToString() + "%";
         }
     }
     public void TakeDamage(float demage)
     {
         hitpoint -= demage;
         int hitpoint_int = (int)hitpoint;
-        if (hitpoint_int < 0)
+        if (hitpoint_int <= 0)
         {
             hitpoint = 0;
             hitpoint_int = 0;
