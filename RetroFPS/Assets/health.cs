@@ -9,7 +9,7 @@ public class health : MonoBehaviour
     public Image currentHealthBar;
     public Text ratioText;
 
-    public float hitpoint =100;
+    public float hitpoint = 100;
     private float maxHitpoint = 100;
     // Use this for initialization
     void Start()
@@ -36,6 +36,7 @@ public class health : MonoBehaviour
         {
             hitpoint = 0;
             hitpoint_int = 0;
+            Destroy(gameObject);
             Debug.Log("Dead!");
         }
         UpdateHealthBar();
