@@ -9,8 +9,9 @@ public class health : MonoBehaviour
     public Image currentHealthBar;
     public Text ratioText;
 
-    public float hitpoint = 100;
     private const float maxHitpoint = 100;
+    public float hitpoint = maxHitpoint;
+  
     // Use this for initialization
     void Start()
     {
@@ -28,9 +29,9 @@ public class health : MonoBehaviour
             ratioText.text =System.Math.Round((ratio * 100),0).ToString() + "%";
         }
     }
-    public void TakeDamage(float demage)
+    public void TakeDamage(float damage)
     {
-        hitpoint -= demage;
+        hitpoint -= damage;
         int hitpoint_int = (int)hitpoint;
         if (hitpoint_int <= 0)
         {

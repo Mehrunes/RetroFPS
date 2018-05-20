@@ -55,6 +55,7 @@
      <Compile Include="Assets\Changer.cs" />
      <Compile Include="Assets\characterController.cs" />
      <Compile Include="Assets\health.cs" />
+     <Compile Include="Assets\SplashDamage.cs" />
      <Compile Include="Assets\Testsprite\CameraController.cs" />
      <Compile Include="Assets\Testsprite\CameraDirection.cs" />
      <Compile Include="Assets\Testsprite\Enums.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Testsprite\RobitTools.cs" />
      <Compile Include="Assets\Testsprite\rotation.cs" />
      <Compile Include="Assets\Testsprite\SpriteBillboard.cs" />
+     <Compile Include="Assets\UpdateAmmunition.cs" />
      <Compile Include="Assets\UsingInstantiate.cs" />
      <Compile Include="Assets\WallDamage.cs" />
      <Compile Include="Assets\WallDamagePenalty.cs" />
