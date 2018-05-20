@@ -13,7 +13,7 @@ public class WallDamage : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
 
-        if (col.gameObject.name == "Aktor2137" || col.gameObject.name == "Testsprite")
+        if (col.gameObject.tag == "Player" || col.gameObject.tag == "NPC")
         {
             col.gameObject.GetComponent<health>().TakeDamage(9);
 

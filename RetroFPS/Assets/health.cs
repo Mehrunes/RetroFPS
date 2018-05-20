@@ -10,7 +10,7 @@ public class health : MonoBehaviour
     public Text ratioText;
 
     public float hitpoint = 100;
-    private float maxHitpoint = 100;
+    private const float maxHitpoint = 100;
     // Use this for initialization
     void Start()
     {

@@ -54,7 +54,6 @@
      <Compile Include="Assets\camMouseLook.cs" />
      <Compile Include="Assets\Changer.cs" />
      <Compile Include="Assets\characterController.cs" />
-     <Compile Include="Assets\enemyHealth.cs" />
      <Compile Include="Assets\health.cs" />
      <Compile Include="Assets\Testsprite\CameraController.cs" />
      <Compile Include="Assets\Testsprite\CameraDirection.cs" />
