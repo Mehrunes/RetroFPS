@@ -11,7 +11,10 @@ public class health : MonoBehaviour
 
     private const float maxHitpoint = 100;
     public float hitpoint = maxHitpoint;
-  
+
+    public Texture img_demage;
+    private bool take_damage = false;
+
     // Use this for initialization
     void Start()
     {
@@ -31,6 +34,7 @@ public class health : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        StartCoroutine(Example());
         hitpoint -= damage;
         int hitpoint_int = (int)hitpoint;
         if (hitpoint_int <= 0)
@@ -42,5 +46,32 @@ public class health : MonoBehaviour
         }
         UpdateHealthBar();
     }
-    
+    public void TakeHealth(float health)
+    {
+        float temHealth = maxHitpoint - hitpoint;
+
+        if (health > maxHitpoint)
+            health += temHealth;
+        if (hitpoint < maxHitpoint)
+            hitpoint += health;
+        if (hitpoint > maxHitpoint) 
+            hitpoint = maxHitpoint;
+
+        int hitpoint_int = (int)hitpoint;
+
+        UpdateHealthBar();
+    }
+    IEnumerator Example()
+    {
+        take_damage = true;
+        yield return new WaitForSeconds(2);
+        take_damage = false;
+    }
+    void OnGUI()
+    {
+        if (take_damage == true)
+        {
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), img_demage, ScaleMode.ScaleToFit);
+        }
+    }
 }
