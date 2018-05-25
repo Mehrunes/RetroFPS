@@ -7,15 +7,12 @@ public class Changer : MonoBehaviour {
 
     public Sprite spFront, spLeft, spRight, spBack;
     public GameObject Cameraman;
-    private Quaternion ObjectRotation;
-    private Quaternion CameramanRotation;
+    public GameObject parentObject;
+    private float ObjectRotation;
+    private float CameramanRotation;
     public float angleObjectCamera;
-    private float fixedrotation;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+
+	//absolute value
     private float Abs(float data)
     {
         if (data < 0)
@@ -29,20 +26,19 @@ public class Changer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //katy oczu i obiektu
-        ObjectRotation = this.transform.parent.rotation;
-        CameramanRotation = Cameraman.transform.rotation;
+        ObjectRotation = parentObject.transform.rotation.eulerAngles.y +180;
+        CameramanRotation = Cameraman.transform.rotation.eulerAngles.y +180;
         //wartosc kata miedzy aktorem a spritem nie dziala jak chuj
-        angleObjectCamera = Abs(CameramanRotation.y - ObjectRotation.y);
+        angleObjectCamera = Abs(CameramanRotation - ObjectRotation);
 
 
-        if (angleObjectCamera<0.25)
             this.GetComponent<SpriteRenderer>().sprite = spBack;
-        if (angleObjectCamera > 0.25 && angleObjectCamera <0.5)
+        if (angleObjectCamera > 45 && angleObjectCamera <135)
             this.GetComponent<SpriteRenderer>().sprite = spLeft;
-        if (angleObjectCamera < 0.75 && angleObjectCamera > 0.5)
-            this.GetComponent<SpriteRenderer>().sprite = spRight;
-        if (angleObjectCamera >0.75)
+        if (angleObjectCamera < 225 && angleObjectCamera > 135)
             this.GetComponent<SpriteRenderer>().sprite = spFront;
+        if (angleObjectCamera >225 && angleObjectCamera <315)
+            this.GetComponent<SpriteRenderer>().sprite = spRight;
 
         //obrot tylko wokol x,z
         Vector3 targetPostition = new Vector3(Cameraman.transform.position.x,
