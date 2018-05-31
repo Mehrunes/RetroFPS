@@ -66,12 +66,12 @@ public class health : MonoBehaviour
         take_damage = true;
         yield return new WaitForSeconds(2);
         take_damage = false;
-    }
+    }/*
     void OnGUI()
     {
         if (take_damage == true)
         {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), img_demage, ScaleMode.ScaleToFit);
         }
-    }
+    }*/
 }

@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class looker : MonoBehaviour {
-    public Transform target;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        this.transform.LookAt(target);
-	}
+public class looker : MonoBehaviour
+{
+    private GameObject Cameraman;
+    // Use this for initialization
+    void Start()
+    {
+        Cameraman = GameObject.Find("Agent2137/Actor Eyes");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        Vector3 targetPostition = new Vector3(Cameraman.transform.position.x,
+                               Cameraman.transform.position.y,
+                                Cameraman.transform.position.z);
+        this.transform.LookAt(targetPostition);
+
+    }
 }

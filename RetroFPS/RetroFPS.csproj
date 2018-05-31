@@ -295,7 +295,9 @@
     <Compile Include="Assets\DoorScript.cs" />
     <Compile Include="Assets\health.cs" />
     <Compile Include="Assets\looker.cs" />
+    <Compile Include="Assets\lookernoupdown.cs" />
     <Compile Include="Assets\OpenTheDoor.cs" />
+    <Compile Include="Assets\spawnHP.cs" />
     <Compile Include="Assets\SplashDamage.cs" />
     <Compile Include="Assets\Testsprite\CameraController.cs" />
     <Compile Include="Assets\Testsprite\CameraDirection.cs" />
