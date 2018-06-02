@@ -294,6 +294,7 @@
     <Compile Include="Assets\characterController.cs" />
     <Compile Include="Assets\DoorScript.cs" />
     <Compile Include="Assets\health.cs" />
+    <Compile Include="Assets\Interactor.cs" />
     <Compile Include="Assets\looker.cs" />
     <Compile Include="Assets\lookernoupdown.cs" />
     <Compile Include="Assets\OpenTheDoor.cs" />
