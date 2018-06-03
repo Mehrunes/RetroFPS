@@ -7453,7 +7453,6 @@ GameObject:
   - component: {fileID: 1951748187}
   - component: {fileID: 1951748191}
   - component: {fileID: 1951748190}
-  - component: {fileID: 1951748185}
   - component: {fileID: 1951748189}
   - component: {fileID: 1951748186}
   - component: {fileID: 1951748184}
@@ -7502,19 +7501,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1951748185
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1951748183}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!33 &1951748186
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7638,7 +7624,10 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   verticalVelocity: 0
+  maxVelocity: 20
+  maxSpeed: 23
   jumpCounter: 0
+  canWallJump: 1
 --- !u!1 &2085133735
 GameObject:
   m_ObjectHideFlags: 0
