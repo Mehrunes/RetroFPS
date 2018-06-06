@@ -10,23 +10,40 @@ public class UsingInstantiate : MonoBehaviour {
 	public Rigidbody currentWeapon;
 	public Transform barrelEnd;
 	public const int force = 5000;
-	public int ammunition = 60;
-	public float fireRate = 0.14f;
+	public const int maxAmmunition = 60;
+    public int ammunition = maxAmmunition;
+
+    public float fireRate = 0.14f;
 	public float lastShot = 0.0f;
+
+    public AudioSource audioSource;
+    public AudioClip audioDamage;
+
+    public AudioSource audioSource2;
+    public AudioClip audioGun;
 
 	void Start () 
 	{
 		currentWeapon = weapons[0];
 		ammunitionText.text = ammunition.ToString();
 	}
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+    }
 
-	void Update () 
+    void Update () 
 	{
 		if (ammunition > 0 && (Input.GetButtonDown("Fire1") || (Input.GetButton("Fire2") && Time.time > lastShot + fireRate))) 
 		{
 			var rocket = Instantiate (currentWeapon, barrelEnd.position, barrelEnd.rotation);
 			rocket.AddForce (barrelEnd.forward * force);
 			lastShot = Time.time;
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(audioDamage);
+            }
 			ammunition--;
 			UpdateAmmoText ();
 		}
@@ -50,16 +67,64 @@ public class UsingInstantiate : MonoBehaviour {
 		ammunitionText.text = ammunition.ToString();
 	}
 
-	public void AddAmmunition ()
-	{
-		if (Input.GetKeyDown (KeyCode.R)) 
-		{
-			ammunition += 10;
-			UpdateAmmoText();
-		}
-	}
+    public void AddAmmunition()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            int tempAmmunition = maxAmmunition - ammunition;
+            int amm = 10;
+            if (amm > maxAmmunition)
+            {
+                ammunition += tempAmmunition;
+                UpdateAmmoText();
+                PlaySound();
+            }
+            if (ammunition < maxAmmunition)
+            {
+                ammunition += amm;
+                UpdateAmmoText();
+                PlaySound();
+            }
+            if (ammunition > maxAmmunition)
+            {
+                ammunition = maxAmmunition;
+            }
+        }
+    }
 
-	public void SwitchWeapon() 
+    //public void AddAmmunition(int amm)
+    //{
+    //    int tempAmmunition = maxAmmunition - ammunition;
+
+    //    if (ammunition > maxAmmunition)
+    //    {
+    //        amm += tempAmmunition;
+    //        //PlaySound();
+    //    }
+    //    if (ammunition < maxAmmunition)
+    //    {
+    //        ammunition += amm;
+    //        //PlaySound();
+    //    }
+    //    if (ammunition > maxAmmunition)
+    //        ammunition = maxAmmunition;
+    //}
+    //do amunicji
+    public int getMaxAmmunition()
+    {
+        return maxAmmunition;
+    }
+    public int getAmmunition()
+    {
+        return ammunition;
+    }
+    void PlaySound()
+    {
+        audioSource.clip = audioGun;
+        audioSource.Play();
+
+    }
+    public void SwitchWeapon() 
 	{
 		if(Input.GetKeyDown(KeyCode.Tab)) 
 		{

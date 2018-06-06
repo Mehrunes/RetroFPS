@@ -3,7 +3,12 @@ guid: d9cd6bd0d4c4d8446ace3f7bdbf39985
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ammunitionText: {instanceID: 0}
+  - currentWeapon: {instanceID: 0}
+  - barrelEnd: {instanceID: 0}
+  - audioSouce: {instanceID: 0}
+  - audioDamage: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -6,12 +6,18 @@ public class Interactor : MonoBehaviour
 {
 	public const float reach = 10f;
 
-	void Start () 
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
+    void Start () 
 	{
 		
 	}
-	
-	void Update () 
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+    void Update () 
 	{
 		if(Input.GetKeyDown(KeyCode.E)) 
 		{
@@ -21,9 +27,16 @@ public class Interactor : MonoBehaviour
 			{
 				if(hit.collider.CompareTag("Door")) 
 				{
-					hit.collider.transform.parent.parent.GetComponent<DoorScript>().ChangeDoorState();
-				}
+                    hit.collider.transform.parent.parent.GetComponent<DoorScript>().ChangeDoorState();
+                    PlaySound();
+                }
 			}
 		}
 	}
+    void PlaySound()
+    {
+        audioSource.clip = audioClip;
+        audioSource.Play();
+
+    }
 }
