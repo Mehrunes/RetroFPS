@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -719,7 +719,8 @@ MonoBehaviour:
   currentWeapon: {fileID: 54726133477000496, guid: 6023c484d4ce3c843a61f21f1bf9f6c8,
     type: 2}
   barrelEnd: {fileID: 377962618}
-  ammunition: 60
+  maxAmmunition: 420
+  ammunition: 2147483647
   fireRate: 0.14
   lastShot: 0
   audioSource: {fileID: 405481576}
@@ -1262,8 +1263,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 631998316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.8, y: 1.83, z: -24.6}
-  m_LocalScale: {x: 1, y: 1, z: 1.4}
+  m_LocalPosition: {x: -2.65, y: 4.93, z: -22.92}
+  m_LocalScale: {x: 1.1370256, y: 1, z: 0.47680503}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
@@ -2007,9 +2008,10 @@ MonoBehaviour:
   currentHealthBar: {fileID: 1613702044}
   ratioText: {fileID: 636066891}
   hitpoint: 100
-  img_demage: {fileID: 0}
-  audioClip: {fileID: 0}
+  damageindicator: {fileID: 0}
+  medicinesound: {fileID: 0}
   audioSource: {fileID: 0}
+  takingdamage: {fileID: 0}
 --- !u!1 &988337463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,9 +3198,10 @@ MonoBehaviour:
   currentHealthBar: {fileID: 0}
   ratioText: {fileID: 0}
   hitpoint: 100
-  img_demage: {fileID: 0}
-  audioClip: {fileID: 0}
+  damageindicator: {fileID: 0}
+  medicinesound: {fileID: 0}
   audioSource: {fileID: 0}
+  takingdamage: {fileID: 0}
 --- !u!64 &1401022132
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8093,9 +8096,10 @@ MonoBehaviour:
   currentHealthBar: {fileID: 459587267}
   ratioText: {fileID: 2139533777}
   hitpoint: 100
-  img_demage: {fileID: 2800000, guid: d018d815b61b61744ac237e7dc341cfe, type: 3}
-  audioClip: {fileID: 8300000, guid: 7b931b2d02d97964ab9cc4032fc8b37b, type: 3}
+  damageindicator: {fileID: 0}
+  medicinesound: {fileID: 8300000, guid: 7b931b2d02d97964ab9cc4032fc8b37b, type: 3}
   audioSource: {fileID: 1951748194}
+  takingdamage: {fileID: 8300000, guid: eedfd1a5365dc4142b50d6cda14ffca6, type: 3}
 --- !u!114 &1951748192
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,8 +10,8 @@ public class UsingInstantiate : MonoBehaviour {
 	public Rigidbody currentWeapon;
 	public Transform barrelEnd;
 	public const int force = 5000;
-	public const int maxAmmunition = 60;
-    public int ammunition = maxAmmunition;
+	public int maxAmmunition = 420;
+    public int ammunition = 60;
 
     public float fireRate = 0.14f;
 	public float lastShot = 0.0f;

@@ -12,11 +12,13 @@ public class health : MonoBehaviour
     private const float maxHitpoint = 100;
     public float hitpoint = maxHitpoint;
 
-    public Texture img_demage;
+    public Texture damageindicator;
     private bool take_damage = false;
 
-    public AudioClip audioClip;
+    public AudioClip medicinesound;
     public AudioSource audioSource;
+    public AudioClip takingdamage;
+
     // Use this for initialization
     void Start()
     {
@@ -50,6 +52,8 @@ public class health : MonoBehaviour
             Debug.Log("Dead!");
         }
         UpdateHealthBar();
+        PlaySound(takingdamage);
+
     }
     public void TakeHealth(float health)
     {
@@ -58,12 +62,12 @@ public class health : MonoBehaviour
         if (health > maxHitpoint)
         {
             health += temHealth;
-            PlaySound();
+            PlaySound(medicinesound);
         }
         if (hitpoint < maxHitpoint)
         {
             hitpoint += health;
-            PlaySound();
+            PlaySound(medicinesound);
         }
         if (hitpoint > maxHitpoint)
             hitpoint = maxHitpoint;
@@ -89,9 +93,9 @@ public class health : MonoBehaviour
         yield return new WaitForSeconds(2);
         take_damage = false;
     }
-    void PlaySound()
+    void PlaySound(AudioClip sound)
     {
-        audioSource.clip = audioClip;
+        audioSource.clip = sound;
         audioSource.Play();
         
     }
@@ -100,7 +104,7 @@ public class health : MonoBehaviour
     {
         if (take_damage == true)
         {
-            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), img_demage, ScaleMode.ScaleToFit);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), damageindicator, ScaleMode.ScaleToFit);
         }
     }
 }

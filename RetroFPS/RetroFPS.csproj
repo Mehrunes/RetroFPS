@@ -288,6 +288,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Ammunition.cs" />
     <Compile Include="Assets\Apteczka.cs" />
     <Compile Include="Assets\camMouseLook.cs" />
     <Compile Include="Assets\Changer.cs" />
