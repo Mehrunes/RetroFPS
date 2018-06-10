@@ -52,7 +52,8 @@ public class health : MonoBehaviour
             Debug.Log("Dead!");
         }
         UpdateHealthBar();
-        PlaySound(takingdamage);
+        if(this.tag=="Player")
+            PlaySound(takingdamage);
 
     }
     public void TakeHealth(float health)
@@ -99,7 +100,7 @@ public class health : MonoBehaviour
         audioSource.Play();
         
     }
-
+    
     void OnGUI()
     {
         if (take_damage == true)

@@ -10,8 +10,8 @@ public class UsingInstantiate : MonoBehaviour {
 	public Rigidbody currentWeapon;
 	public Transform barrelEnd;
 	public const int force = 5000;
-	public int maxAmmunition = 420;
-    public int ammunition = 60;
+	public long  maxAmmunition = 420;
+    public long ammunition = 60;
 
     public float fireRate = 0.14f;
 	public float lastShot = 0.0f;
@@ -71,7 +71,7 @@ public class UsingInstantiate : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            int tempAmmunition = maxAmmunition - ammunition;
+            long tempAmmunition = maxAmmunition - ammunition;
             int amm = 10;
             if (amm > maxAmmunition)
             {
@@ -110,11 +110,11 @@ public class UsingInstantiate : MonoBehaviour {
     //        ammunition = maxAmmunition;
     //}
     //do amunicji
-    public int getMaxAmmunition()
+    public long getMaxAmmunition()
     {
         return maxAmmunition;
     }
-    public int getAmmunition()
+    public long getAmmunition()
     {
         return ammunition;
     }
