@@ -103,7 +103,7 @@ public class health : MonoBehaviour
     
     void OnGUI()
     {
-        if (take_damage == true)
+        if (take_damage == true && this.tag=="Player")
         {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), damageindicator, ScaleMode.ScaleToFit);
         }
