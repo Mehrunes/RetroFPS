@@ -5,17 +5,17 @@ using System.Collections.Generic;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float speed = 8f;
+    public float speed = 30f;
     public float jumpSpeed = 10f;
-    public float gravity = 10f;
+    public float gravity = 20f;
     public float verticalVelocity = 0f;
-    public float maxVelocity = 30f;
-    public float maxSpeed = 23f;
     public int jumpCounter = 0;
+    public float NoiseMultiplier = 1f;
     public bool canWallJump = true;
+    public bool canJump = true;
     private Vector3 movementVector;
     private CharacterController controller;
-    private Rigidbody characterRigidbody;
+    private SphereCollider Noise;
 
 
     // Use this for initialization
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
-        characterRigidbody = GetComponent<Rigidbody>();
+        Noise = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -48,16 +48,30 @@ public class PlayerMovement : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.Space) == true) && (jumpCounter <= 1))
             {
                 verticalVelocity += jumpSpeed;
-                if (verticalVelocity >= maxVelocity)
-                {
-                    verticalVelocity = maxVelocity;
-                }
                 jumpCounter = 2;
             }
         }
         movementVector.y = 0;
         movementVector.Normalize();
-        movementVector *= speed;
+        if ((Input.GetKey(KeyCode.LeftShift) == true) && (movementVector != Vector3.zero))
+        {
+            movementVector *= (speed / 2);
+            Noise.radius = 5f;
+        }
+        else if ((Input.GetKey(KeyCode.LeftControl) == true) && (movementVector != Vector3.zero))
+        {
+            movementVector *= (speed / 4);
+            Noise.radius = 2f;
+        }
+        else if (movementVector == Vector3.zero)
+        {
+            Noise.radius = 0f;
+        }
+        else
+        {
+            Noise.radius = 10f;
+            movementVector *= speed;
+        }
         movementVector.y = verticalVelocity;
         controller.Move(movementVector * Time.deltaTime);
         if (Input.GetKeyDown("escape"))
@@ -65,17 +79,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        jumpCounter = 1;
-        if ((controller.isGrounded) && ((movementVector.x >= 7.9) || (movementVector.z >= 7.9)))
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if ((movementVector.x < maxVelocity) && (movementVector.x >= 7.9))
-                    movementVector.x += 3;
-                if ((movementVector.y < maxVelocity) && (movementVector.y >= 7.9))
-                    movementVector.y += 3;
-            }
-        }
         if (!controller.isGrounded && hit.normal.y < 0.1f)
         {
             if ((Input.GetKeyDown(KeyCode.Space)) && (canWallJump))
@@ -84,16 +87,12 @@ public class PlayerMovement : MonoBehaviour
                 canWallJump = false;
                 verticalVelocity = jumpSpeed;
                 movementVector = hit.normal * speed;
-                if (verticalVelocity >= maxVelocity)
-                {
-                    verticalVelocity = maxVelocity;
-                }
             }
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnDrawGizmosSelected()
     {
-        jumpCounter = 0;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, Noise.radius);
     }
 }

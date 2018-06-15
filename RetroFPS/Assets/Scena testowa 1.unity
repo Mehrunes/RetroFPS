@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4482,6 +4482,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 10
+  meeleRange: 2
+  lookAngle: 110
+  playerInSight: 0
+  distance: 0
 --- !u!195 &965479979
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7846,7 +7850,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1835592415
+  randomSeed: -452768362
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13254,7 +13258,6 @@ GameObject:
   - component: {fileID: 1951748187}
   - component: {fileID: 1951748191}
   - component: {fileID: 1951748190}
-  - component: {fileID: 1951748189}
   - component: {fileID: 1951748186}
   - component: {fileID: 1951748184}
   - component: {fileID: 1951748192}
@@ -13262,6 +13265,7 @@ GameObject:
   - component: {fileID: 1951748185}
   - component: {fileID: 1951748188}
   - component: {fileID: 1951748194}
+  - component: {fileID: 1951748189}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -13318,10 +13322,10 @@ MonoBehaviour:
   jumpSpeed: 5
   gravity: 10
   verticalVelocity: 0
-  maxVelocity: 30
-  maxSpeed: 23
   jumpCounter: 0
+  NoiseMultiplier: 1
   canWallJump: 0
+  canJump: 1
 --- !u!33 &1951748186
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13360,21 +13364,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1951748189
-Rigidbody:
+--- !u!135 &1951748189
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1951748183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 80
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
+  m_Radius: 5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!64 &1951748190
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13439,7 +13440,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1951748183}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7b931b2d02d97964ab9cc4032fc8b37b, type: 3}
@@ -14176,10 +14177,10 @@ MonoBehaviour:
   jumpSpeed: 5
   gravity: 10
   verticalVelocity: 0
-  maxVelocity: 30
-  maxSpeed: 23
   jumpCounter: 0
+  NoiseMultiplier: 1
   canWallJump: 0
+  canJump: 1
 --- !u!114 &2017876177
 MonoBehaviour:
   m_ObjectHideFlags: 0

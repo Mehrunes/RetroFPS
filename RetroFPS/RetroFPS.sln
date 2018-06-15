@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroFPS", "RetroFPS.csproj", "{19FB88A2-9DA8-D33D-5EE1-E82E65D616FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetroFPS.Plugins", "RetroFPS.Plugins.csproj", "{B89BFC9F-015E-DCF3-0927-981D8C42DE38}"
