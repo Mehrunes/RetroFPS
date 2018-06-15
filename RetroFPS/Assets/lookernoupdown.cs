@@ -6,7 +6,7 @@ public class lookernoupdown : MonoBehaviour {
     private  GameObject Cameraman;
 	// Use this for initialization
 	void Start () {
-        Cameraman = GameObject.Find("Agent2137/Actor Eyes");
+        Cameraman = GameObject.Find("Player/Actor Eyes");
     }
     
 	// Update is called once per frame
