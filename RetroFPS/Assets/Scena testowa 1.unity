@@ -4481,7 +4481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c083b7fab47f1e4d91509dd7b7640f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 20
+  lookRadius: 10
 --- !u!195 &965479979
 NavMeshAgent:
   m_ObjectHideFlags: 0
