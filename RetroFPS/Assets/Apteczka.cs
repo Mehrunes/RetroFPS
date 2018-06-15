@@ -16,7 +16,7 @@ public class Apteczka : MonoBehaviour {
     void OnTriggerEnter(Collider col)
     {
 
-        if (col.gameObject.name == "Agent2137")//albo  (col.gameObject.tag == "Player")
+        if (col.gameObject.name == "Player")//albo  (col.gameObject.tag == "Player")
         {
             if (!(col.gameObject.GetComponent<health>().getHiPoint() == col.gameObject.GetComponent<health>().getMaxHiPoint()))
             {
