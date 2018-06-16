@@ -7,10 +7,14 @@ public class EnemyController : MonoBehaviour {
 
     public float lookRadius = 10f;
     public float meeleRange = 2f;
-    public float lookAngle = 110f;
-    public bool playerInSight;
+    public float lookAngle = 120f;
+    public bool playerInFieldOfView = false;
     public float distance;
-    Vector3 lastKnownPlayerPosition;
+    public Vector3 direction;
+    public Vector3 lastKnownPlayerPosition = Vector3.zero;
+    public float angleToPlayer;
+    public bool alert;
+    public bool heardPlayer = false;
 
 
     private Transform target;
@@ -30,8 +34,18 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         distance = Vector3.Distance(target.position, transform.position);
+        direction = target.position - transform.position;
+        angleToPlayer = (Vector3.Angle(direction, transform.forward));
+        if ((angleToPlayer >= lookAngle * -0.5) && (angleToPlayer <= lookAngle * 0.5))
+        {
+            playerInFieldOfView = true;
+        }
+        else
+        {
+            playerInFieldOfView = false;
+        }
 
-        if (distance <= lookRadius)
+        if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer))
         {
             Action = "FollowPlayer";
             agent.SetDestination(target.position);
@@ -42,15 +56,22 @@ public class EnemyController : MonoBehaviour {
             }
             lastKnownPlayerPosition = target.position;
         }
-        if (distance > lookRadius)
+        if ((distance > lookRadius) || (!playerInFieldOfView))
         {
-            agent.SetDestination(lastKnownPlayerPosition);
-            Action = "Idle";
+            if (alert)
+            {
+                agent.SetDestination(lastKnownPlayerPosition);
+                Action = "GoToLastKnownPlayerPosition";
+            }
+            else
+            {
+                Action = "Idle";
+            }
         }
 	}
     void FaceTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
@@ -66,6 +87,13 @@ public class EnemyController : MonoBehaviour {
         {
             Action = "AttackPlayer";
             col.gameObject.GetComponent<health>().TakeDamage(0.1f);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            heardPlayer = true;
         }
     }
 }
