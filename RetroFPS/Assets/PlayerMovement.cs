@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (movementVector == Vector3.zero)
         {
-            Noise.radius = 0f;
+            Noise.radius = 1f;
         }
         else
         {
@@ -89,10 +89,5 @@ public class PlayerMovement : MonoBehaviour
                 movementVector = hit.normal * speed;
             }
         }
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, Noise.radius);
     }
 }

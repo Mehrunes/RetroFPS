@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour {
     public float angleToPlayer;
     public bool alert;
     public bool heardPlayer = false;
+    public bool sawPlayer = false;
 
 
     private Transform target;
@@ -29,51 +30,69 @@ public class EnemyController : MonoBehaviour {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         col = GetComponent<SphereCollider>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
         distance = Vector3.Distance(target.position, transform.position);
         direction = target.position - transform.position;
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z);
         angleToPlayer = (Vector3.Angle(direction, transform.forward));
-        if ((angleToPlayer >= lookAngle * -0.5) && (angleToPlayer <= lookAngle * 0.5))
-        {
-            playerInFieldOfView = true;
-        }
-        else
-        {
-            playerInFieldOfView = false;
-        }
+        Ray myRay = new Ray(origin, direction);
+        RaycastHit hit;
 
-        if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer))
+        if (((angleToPlayer >= lookAngle * -0.5) && (angleToPlayer <= lookAngle * 0.5)) && (Physics.Raycast(myRay, out hit, lookRadius)))  // Gracz w zasięgu wzroku bota
         {
-            Action = "FollowPlayer";
+            if (hit.collider.tag == "Player")
+            {
+                playerInFieldOfView = true;
+            }
+            else
+            {
+                playerInFieldOfView = false;
+            }
+        }
+        if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer)) // Bot wykrył gracza (zobaczył go lub usłyszał)
+        {
             agent.SetDestination(target.position);
-
+            Action = "FollowPlayer";
+            Debug.Log("FollowPlayer");
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget();
             }
             lastKnownPlayerPosition = target.position;
+            if(heardPlayer)
+            {
+                heardPlayer = false;
+            }
         }
-        if ((distance > lookRadius) || (!playerInFieldOfView))
+        else if ((distance > lookRadius) || (!playerInFieldOfView))
         {
-            if (alert)
+            if ((sawPlayer) || (heardPlayer))
             {
                 agent.SetDestination(lastKnownPlayerPosition);
                 Action = "GoToLastKnownPlayerPosition";
+                Debug.Log("GoToLastKnownPlayerPosition");
+                sawPlayer = false;
+                heardPlayer = false;
             }
             else
             {
                 Action = "Idle";
+                Debug.Log("Idle");
             }
+        }
+        if (agent.velocity == Vector3.zero)
+        {
+
         }
 	}
     void FaceTarget()
     {
         direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
     }
 
     private void OnDrawGizmosSelected()
@@ -86,6 +105,7 @@ public class EnemyController : MonoBehaviour {
         if ((col.gameObject.tag == "Player") && (distance < meeleRange))
         {
             Action = "AttackPlayer";
+            Debug.Log("AttackPlayer");
             col.gameObject.GetComponent<health>().TakeDamage(0.1f);
         }
     }
@@ -94,6 +114,7 @@ public class EnemyController : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             heardPlayer = true;
+            lastKnownPlayerPosition = target.position;
         }
     }
 }
