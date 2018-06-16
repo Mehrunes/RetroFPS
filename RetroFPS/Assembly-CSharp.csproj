@@ -28,7 +28,6 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
-    <LangVersion>7.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,7 +37,6 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
-    <LangVersion>7.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -61,21 +59,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Ammunition.cs" />
-    <Compile Include="Assets\Apteczka.cs" />
-    <Compile Include="Assets\camMouseLook.cs" />
-    <Compile Include="Assets\Changer.cs" />
-    <Compile Include="Assets\DoorScript.cs" />
-    <Compile Include="Assets\EnemyController.cs" />
-    <Compile Include="Assets\health.cs" />
-    <Compile Include="Assets\Interactor.cs" />
-    <Compile Include="Assets\looker.cs" />
-    <Compile Include="Assets\lookernoupdown.cs" />
-    <Compile Include="Assets\OpenTheDoor.cs" />
-    <Compile Include="Assets\PlayerManager.cs" />
-    <Compile Include="Assets\PlayerMovement.cs" />
-    <Compile Include="Assets\spawnHP.cs" />
-    <Compile Include="Assets\SplashDamage.cs" />
+    <Compile Include="Assets\Scripts\Ammunition.cs" />
+    <Compile Include="Assets\Scripts\Apteczka.cs" />
+    <Compile Include="Assets\Scripts\camMouseLook.cs" />
+    <Compile Include="Assets\Scripts\Changer.cs" />
+    <Compile Include="Assets\Scripts\DoorScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\health.cs" />
+    <Compile Include="Assets\Scripts\Interactor.cs" />
+    <Compile Include="Assets\Scripts\looker.cs" />
+    <Compile Include="Assets\Scripts\lookernoupdown.cs" />
+    <Compile Include="Assets\Scripts\OpenTheDoor.cs" />
+    <Compile Include="Assets\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\spawnHP.cs" />
+    <Compile Include="Assets\Scripts\SplashDamage.cs" />
+    <Compile Include="Assets\Scripts\UpdateAmmunition.cs" />
+    <Compile Include="Assets\Scripts\UsingInstantiate.cs" />
+    <Compile Include="Assets\Scripts\WallDamage.cs" />
+    <Compile Include="Assets\Scripts\WallDamagePenalty.cs" />
     <Compile Include="Assets\Testsprite\CameraController.cs" />
     <Compile Include="Assets\Testsprite\CameraDirection.cs" />
     <Compile Include="Assets\Testsprite\Enums.cs" />
@@ -83,10 +85,6 @@
     <Compile Include="Assets\Testsprite\RobitTools.cs" />
     <Compile Include="Assets\Testsprite\rotation.cs" />
     <Compile Include="Assets\Testsprite\SpriteBillboard.cs" />
-    <Compile Include="Assets\UpdateAmmunition.cs" />
-    <Compile Include="Assets\UsingInstantiate.cs" />
-    <Compile Include="Assets\WallDamage.cs" />
-    <Compile Include="Assets\WallDamagePenalty.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/RetroFPS/RetroFPS/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

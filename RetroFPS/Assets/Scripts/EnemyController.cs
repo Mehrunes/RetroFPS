@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour {
     public bool playerInFieldOfView = false;
     public float distance;
     public Vector3 direction;
-    public Vector3 lastKnownPlayerPosition = Vector3.zero;
+    public Vector3 lastKnownPlayerPosition;
     public float angleToPlayer;
     public bool alert;
     public bool heardPlayer = false;
@@ -55,37 +55,25 @@ public class EnemyController : MonoBehaviour {
         if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer)) // Bot wykrył gracza (zobaczył go lub usłyszał)
         {
             agent.SetDestination(target.position);
+            sawPlayer = true;
+            lastKnownPlayerPosition = target.position;
             Action = "FollowPlayer";
             Debug.Log("FollowPlayer");
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget();
             }
-            lastKnownPlayerPosition = target.position;
-            if(heardPlayer)
-            {
                 heardPlayer = false;
-            }
         }
         else if ((distance > lookRadius) || (!playerInFieldOfView))
         {
-            if ((sawPlayer) || (heardPlayer))
-            {
-                agent.SetDestination(lastKnownPlayerPosition);
-                Action = "GoToLastKnownPlayerPosition";
-                Debug.Log("GoToLastKnownPlayerPosition");
-                sawPlayer = false;
-                heardPlayer = false;
-            }
-            else
-            {
-                Action = "Idle";
-                Debug.Log("Idle");
-            }
+            Action = "GoToLastKnownPlayerPosition";
+            Debug.Log("GoToLastKnownPlayerPosition");
         }
         if (agent.velocity == Vector3.zero)
         {
-
+            Action = "Idle";
+            Debug.Log("Idle");
         }
 	}
     void FaceTarget()
@@ -107,6 +95,7 @@ public class EnemyController : MonoBehaviour {
             Action = "AttackPlayer";
             Debug.Log("AttackPlayer");
             col.gameObject.GetComponent<health>().TakeDamage(0.1f);
+            agent.SetDestination(target.position);
         }
     }
     private void OnTriggerEnter(Collider other)
