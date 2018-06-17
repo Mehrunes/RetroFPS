@@ -13,7 +13,7 @@ public class DoorScript : MonoBehaviour {
     {
 
     }
-    public void ChangeDoorState()
+    public void OnUse()
     {
         open = !open;
     }

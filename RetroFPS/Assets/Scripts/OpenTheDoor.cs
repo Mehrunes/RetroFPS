@@ -21,7 +21,7 @@ public class OpenTheDoor : MonoBehaviour {
             {
                 if (hit.collider.CompareTag("door"))
                 {
-                    hit.collider.transform.parent.GetComponent<DoorScript>().ChangeDoorState();
+                    hit.collider.transform.parent.GetComponent<DoorScript>().OnUse();
                 }
             }
         }

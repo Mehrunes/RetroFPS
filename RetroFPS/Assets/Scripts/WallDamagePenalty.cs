@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WallDamagePenalty : MonoBehaviour {
 
+
+    public float DamageValue;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,7 +20,7 @@ public class WallDamagePenalty : MonoBehaviour {
 
         if (col.gameObject.tag == "Player")//albo  (col.gameObject.tag == "Player")
         {
-            col.gameObject.GetComponent<health>().TakeDamage(0.1f);
+            col.gameObject.GetComponent<health>().TakeDamage(DamageValue);
 
         }
 

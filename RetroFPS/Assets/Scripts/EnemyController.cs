@@ -68,7 +68,7 @@ public class EnemyController : MonoBehaviour {
         else if ((distance > lookRadius) || (!playerInFieldOfView))
         {
             Action = "GoToLastKnownPlayerPosition";
-            Debug.Log("GoToLastKnownPlayerPosition");
+            //Debug.Log("GoToLastKnownPlayerPosition");
         }
         if (agent.velocity == Vector3.zero)
         {

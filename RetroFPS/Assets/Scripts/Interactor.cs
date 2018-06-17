@@ -25,11 +25,10 @@ public class Interactor : MonoBehaviour
 			RaycastHit hit;
 			if(Physics.Raycast(ray, out hit, reach))
 			{
-				if(hit.collider.CompareTag("Door")) 
-				{
-                    hit.collider.transform.parent.parent.GetComponent<DoorScript>().ChangeDoorState();
-                    PlaySound();
-                }
+
+                hit.collider.transform.GetComponent<DoorScript>().OnUse();
+                PlaySound();
+                
 			}
 		}
 	}
