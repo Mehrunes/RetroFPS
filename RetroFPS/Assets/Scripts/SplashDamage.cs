@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SplashDamage : MonoBehaviour {
 
+    public GameObject Ekusuproshion;
     const float damage = 15f;
 
     void Start () 
@@ -20,12 +21,15 @@ public class SplashDamage : MonoBehaviour {
     {
         var center = col.gameObject.transform;
         var radiusF = 5f;
+       
         Destroy (gameObject);
+        Debug.Log("BOOOOOOM");
         ExplosionDamage (center.position, radiusF);
     }
 
     public void ExplosionDamage (Vector3 center, float radius) 
     {
+        Instantiate(Ekusuproshion, this.transform);
         var hitColliders = Physics.OverlapSphere (center, radius);
         foreach (var collider in hitColliders) {
             if (collider != null && collider.gameObject.GetComponent<health> () != null) 
