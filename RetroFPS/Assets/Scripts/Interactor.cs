@@ -25,8 +25,7 @@ public class Interactor : MonoBehaviour
 			RaycastHit hit;
 			if(Physics.Raycast(ray, out hit, reach))
 			{
-
-                hit.collider.transform.GetComponent<DoorScript>().OnUse();
+                hit.collider.transform.GetComponent<INteracts>().OnUse();
                 PlaySound();
                 
 			}

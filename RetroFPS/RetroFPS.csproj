@@ -293,10 +293,12 @@
     <Compile Include="Assets\Scripts\camMouseLook.cs" />
     <Compile Include="Assets\Scripts\Changer.cs" />
     <Compile Include="Assets\Scripts\Controls.cs" />
+    <Compile Include="Assets\Scripts\DoorControl.cs" />
     <Compile Include="Assets\Scripts\DoorScript.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\health.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
+    <Compile Include="Assets\Scripts\Interacts.cs" />
     <Compile Include="Assets\Scripts\Lifespan.cs" />
     <Compile Include="Assets\Scripts\looker.cs" />
     <Compile Include="Assets\Scripts\lookernoupdown.cs" />
@@ -310,6 +312,7 @@
     <Compile Include="Assets\Scripts\spawnHP.cs" />
     <Compile Include="Assets\Scripts\SplashDamage.cs" />
     <Compile Include="Assets\Scripts\SwitchWeapon.cs" />
+    <Compile Include="Assets\Scripts\Teleportu.cs" />
     <Compile Include="Assets\Scripts\UpdateAmmunition.cs" />
     <Compile Include="Assets\Scripts\WallDamage.cs" />
     <Compile Include="Assets\Scripts\WallDamagePenalty.cs" />
