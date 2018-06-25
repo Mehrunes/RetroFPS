@@ -25,8 +25,12 @@ public class Interactor : MonoBehaviour
 			RaycastHit hit;
 			if(Physics.Raycast(ray, out hit, reach))
 			{
-                hit.collider.transform.GetComponent<INteracts>().OnUse();
-                PlaySound();
+                var interactedObject = hit.collider.GetComponent<INteracts>();
+                if(interactedObject != null) 
+                {
+                    interactedObject.OnUse();
+                    PlaySound();
+                }
                 
 			}
 		}
