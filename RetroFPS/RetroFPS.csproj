@@ -288,6 +288,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Deletus.cs" />
+    <Compile Include="Assets\eventBeta.cs" />
+    <Compile Include="Assets\Mission.cs" />
     <Compile Include="Assets\Scripts\Ammunition.cs" />
     <Compile Include="Assets\Scripts\Apteczka.cs" />
     <Compile Include="Assets\Scripts\camMouseLook.cs" />
@@ -297,6 +300,7 @@
     <Compile Include="Assets\Scripts\DoorScript.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\health.cs" />
+    <Compile Include="Assets\Scripts\IMission.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\Interacts.cs" />
     <Compile Include="Assets\Scripts\Lifespan.cs" />
