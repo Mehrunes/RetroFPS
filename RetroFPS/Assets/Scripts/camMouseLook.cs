@@ -11,8 +11,8 @@ public class camMouseLook : MonoBehaviour {
 
     GameObject character;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         character = this.transform.parent.gameObject;	
 	}
@@ -20,6 +20,7 @@ public class camMouseLook : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
         var mouseDirection = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
         mouseDirection = Vector2.Scale(mouseDirection, new Vector2(sensitivity * smoothing, sensitivity * smoothing));

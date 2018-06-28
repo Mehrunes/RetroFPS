@@ -44,8 +44,8 @@ void FixedUpdate()
 
 
 
-        if (Input.GetKeyDown("escape"))
-            Cursor.lockState = CursorLockMode.None;
+        //if (Input.GetKeyDown("escape"))
+        //    Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
