@@ -62,7 +62,7 @@ public class MainMenu : MonoBehaviour {
     public void StartGame()
     {
         SceneManager.LoadScene("Scena testowa 1");
-
+        SceneManager.UnloadScene("Menu glowne");
     }
     public void OptionGame()
     {

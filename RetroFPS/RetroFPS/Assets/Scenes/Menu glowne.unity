@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 98496753}
   - component: {fileID: 98496752}
   m_Layer: 0
-  m_Name: muzyka
+  m_Name: music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Muzyka
+  m_Text: Music
 --- !u!222 &98496753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 826404096}
   - component: {fileID: 826404095}
   m_Layer: 0
-  m_Name: B_wyjscie
+  m_Name: B_exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1012,15 +1012,16 @@ CanvasRenderer:
 --- !u!1 &901391256
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 1771518099123778, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1138113191}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 901391257}
   - component: {fileID: 901391259}
   - component: {fileID: 901391258}
   m_Layer: 0
-  m_Name: powrot
+  m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,8 +1030,9 @@ GameObject:
 --- !u!224 &901391257
 RectTransform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1138113191}
   m_GameObject: {fileID: 901391256}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1047,8 +1049,9 @@ RectTransform:
 --- !u!114 &901391258
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114843162047278334, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1138113191}
   m_GameObject: {fileID: 901391256}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1076,12 +1079,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<<Powr\xF3t"
+  m_Text: <<Back
 --- !u!222 &901391259
 CanvasRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 222049368729873526, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+    type: 2}
+  m_PrefabInternal: {fileID: 1138113191}
   m_GameObject: {fileID: 901391256}
 --- !u!1 &943815518
 GameObject:
@@ -1428,6 +1432,115 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1138113191
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1986950074}
+    m_Modifications:
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.659107
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825501690953068, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771518099123778, guid: e626639b1375f8a4a90e5ed838e4e5ad, type: 2}
+      propertyPath: m_Name
+      value: back
+      objectReference: {fileID: 0}
+    - target: {fileID: 114843162047278334, guid: e626639b1375f8a4a90e5ed838e4e5ad,
+        type: 2}
+      propertyPath: m_Text
+      value: <<Back
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e626639b1375f8a4a90e5ed838e4e5ad, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1174702633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1552,7 @@ GameObject:
   - component: {fileID: 1174702636}
   - component: {fileID: 1174702635}
   m_Layer: 0
-  m_Name: wyjscie
+  m_Name: exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1495,7 +1608,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Wyj\u015Bcie\n"
+  m_Text: Exit
 --- !u!222 &1174702636
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1811,7 +1924,7 @@ GameObject:
   - component: {fileID: 1443931207}
   - component: {fileID: 1443931206}
   m_Layer: 0
-  m_Name: opcje
+  m_Name: option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1867,9 +1980,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Opcje
-
-'
+  m_Text: Option
 --- !u!222 &1443931207
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1959,7 +2070,7 @@ GameObject:
   - component: {fileID: 1505305173}
   - component: {fileID: 1505305172}
   m_Layer: 0
-  m_Name: B_opcje
+  m_Name: B_option
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2081,7 +2192,7 @@ GameObject:
   - component: {fileID: 1832434982}
   - component: {fileID: 1832434981}
   m_Layer: 0
-  m_Name: B_muzyka
+  m_Name: B_music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2192,7 +2303,7 @@ GameObject:
   - component: {fileID: 1986950076}
   - component: {fileID: 1986950075}
   m_Layer: 0
-  m_Name: B_powrot_opcji
+  m_Name: B_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
