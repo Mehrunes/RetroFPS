@@ -30,7 +30,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector3 movementVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        movementVector = transform.TransformDirection(movementVector);
+        if (((Input.GetKey(KeyCode.UpArrow)) || (Input.GetKey(KeyCode.W))) ||
+            ((Input.GetKey(KeyCode.DownArrow)) || (Input.GetKey(KeyCode.S))) ||
+            ((Input.GetKey(KeyCode.LeftArrow)) || (Input.GetKey(KeyCode.A))) ||
+            ((Input.GetKey(KeyCode.RightArrow)) || (Input.GetKey(KeyCode.D))))
+        {
+            movementVector = transform.TransformDirection(movementVector);
+        }
+        else
+        {
+            movementVector = Vector3.zero;
+        }
         if (controller.isGrounded)
         {
             jumpCounter = 0;
@@ -77,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("escape"))
             Cursor.lockState = CursorLockMode.None;
     }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (!controller.isGrounded && hit.normal.y < 0.1f)
