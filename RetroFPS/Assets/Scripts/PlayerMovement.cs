@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public bool canJump = true;
     private Vector3 movementVector;
     private CharacterController controller;
-    private SphereCollider Noise;
+    public SphereCollider Noise ;
 
 
     // Use this for initialization
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
-        Noise = GetComponent<SphereCollider>();
+        //Noise = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame

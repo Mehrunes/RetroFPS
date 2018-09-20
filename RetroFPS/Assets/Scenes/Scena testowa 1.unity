@@ -10544,6 +10544,47 @@ Transform:
   m_Father: {fileID: 896752317}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1139251581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1139251582}
+  - component: {fileID: 1139251583}
+  m_Layer: 0
+  m_Name: SoundSource
+  m_TagString: PlayerSound
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1139251582
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139251581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1951748187}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1139251583
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139251581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1147684981
 GameObject:
   m_ObjectHideFlags: 0
@@ -17372,7 +17413,7 @@ Transform:
   m_Children:
   - {fileID: 405481571}
   m_Father: {fileID: 1951748187}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1605079165
 MonoBehaviour:
@@ -20645,6 +20686,7 @@ MonoBehaviour:
   NoiseMultiplier: 1
   canWallJump: 0
   canJump: 1
+  Noise: {fileID: 1139251583}
 --- !u!33 &1951748186
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20662,6 +20704,7 @@ Transform:
   m_LocalPosition: {x: -3.64, y: 102.84, z: 454}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1139251582}
   - {fileID: 1605079164}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -20691,7 +20734,7 @@ SphereCollider:
   m_GameObject: {fileID: 1951748183}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

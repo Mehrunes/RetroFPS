@@ -100,7 +100,7 @@ public class EnemyController : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "PlayerSound")
         {
             heardPlayer = true;
             lastKnownPlayerPosition = target.position;
