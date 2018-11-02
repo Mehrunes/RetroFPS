@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementVector;
     private CharacterController controller;
     public SphereCollider Noise ;
-
-
+    public AudioSource audioSource;
+    public AudioClip audioJump;
     // Use this for initialization
     void Start()
     {
@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 jumpCounter++;
                 verticalVelocity = jumpSpeed;
+                PlaySound(audioJump);
             }
         }
         else
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 verticalVelocity += jumpSpeed;
                 jumpCounter = 2;
+                PlaySound(audioJump);
             }
         }
         movementVector.y = 0;
@@ -87,7 +89,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("escape"))
             Cursor.lockState = CursorLockMode.None;
     }
+    void PlaySound(AudioClip sound)
+    {
+        audioSource.clip = sound;
+        audioSource.Play();
 
+    }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (!controller.isGrounded && hit.normal.y < 0.1f)
