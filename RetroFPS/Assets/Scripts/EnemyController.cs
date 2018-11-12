@@ -5,21 +5,25 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
-    public float lookRadius = 10f;
+    public float lookRadius = 20f;
     public float meeleRange = 2f;
+    public float rangedRange = 15f;
     public float lookAngle = 120f;
     public bool playerInFieldOfView = false;
     public float distance;
     public Vector3 direction;
     public Vector3 lastKnownPlayerPosition;
+    public Vector3 agentStartPosition;
     public float angleToPlayer;
     public bool alert;
     public bool heardPlayer = false;
     public bool sawPlayer = false;
+    public bool noAmmo = false;
 
 
     private Transform target;
     private NavMeshAgent agent;
+    private Transform agentTransform;
     private SphereCollider col;
 
 
@@ -29,7 +33,9 @@ public class EnemyController : MonoBehaviour {
 	void Start () {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        agentTransform = GetComponent<Transform>();
         col = GetComponent<SphereCollider>();
+        agentStartPosition = agentTransform.position;
     }
 	
 	// Update is called once per frame
@@ -52,28 +58,36 @@ public class EnemyController : MonoBehaviour {
                 playerInFieldOfView = false;
             }
         }
-        if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer)) // Bot wykrył gracza (zobaczył go lub usłyszał)
+        if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer))                       // Bot widzi lub słyszy gracza
         {
             agent.SetDestination(target.position);
             sawPlayer = true;
             lastKnownPlayerPosition = target.position;
             Action = "FollowPlayer";
-            Debug.Log("FollowPlayer");
+            Debug.Log("Follow Player");
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget();
             }
                 heardPlayer = false;
         }
-        else if ((distance > lookRadius) || (!playerInFieldOfView))
+        else if (((distance > lookRadius) || (!playerInFieldOfView)) && (!heardPlayer))                 // Bot nie widzi i nie słyszy gracza
         {
+            agent.SetDestination(lastKnownPlayerPosition);
             Action = "GoToLastKnownPlayerPosition";
-            //Debug.Log("GoToLastKnownPlayerPosition");
+            Debug.Log("Go To Last Known Player Position");
         }
-        if (agent.velocity == Vector3.zero)
+        else if ((agent.velocity == Vector3.zero) && (agentTransform.position == agentStartPosition))   // Bot nie widzi i nie słyszy gracza i stoi na swojej początkowej pozycji
         {
             Action = "Idle";
             Debug.Log("Idle");
+        }
+        else                                                                                            // Bot nie widzi i nie słyszy gracza i nie stoi na swojej początkowej pozycji
+        {
+            WaitForSeconds SearchingForPlayer = new WaitForSeconds(5);
+            agent.SetDestination(agentStartPosition);
+            Action = "GoToStartingPosition";
+            Debug.Log("GoToStartingPosition");
         }
 	}
     void FaceTarget()
