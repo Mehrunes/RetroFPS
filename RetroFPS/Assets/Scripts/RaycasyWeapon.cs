@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using RetroFPS.Assets.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RaycasyWeapon : MonoBehaviour, Weapon {
+
+    public Text amoText;
 
     public int gunDamage = 20;
     public float fireRate = 0.25f;
@@ -17,11 +21,17 @@ public class RaycasyWeapon : MonoBehaviour, Weapon {
     private float nextFire;
 
     void Start () {
+        amoText.text = "Full";
+        UpdateTextAmo();
+
         laserLine = GetComponent<LineRenderer> ();
-
         gunAudio = GetComponent<AudioSource> ();
-
         fpsCam = GetComponentInParent<Camera> ();
+    }
+
+    public void UpdateTextAmo()
+    {
+        amoText.text = "Full";
     }
 
     public void shoot () {
@@ -61,4 +71,6 @@ public class RaycasyWeapon : MonoBehaviour, Weapon {
 
         laserLine.enabled = false;
     }
+
+    
 }

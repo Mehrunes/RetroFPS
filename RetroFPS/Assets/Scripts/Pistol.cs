@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RetroFPS.Assets.Scripts {
     public class Pistol : MonoBehaviour,  Weapon {
+
+
+    public Text amoText;
 
     public Rigidbody currentWeapon;
 	public Transform barrelEnd;
@@ -20,14 +24,23 @@ namespace RetroFPS.Assets.Scripts {
 
 	void Start () 
 	{
+            amoText.text = "";
+            UpdateTextAmo(); 
 
-	}
+    }
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
     }
-
+        // Update is called once per frame
+    public void UpdateTextAmo()
+    {   
+        if (ammunition >= 0)
+        {
+            amoText.text = ammunition.ToString()+"/"+maxAmmunition.ToString();
+        }
+    }
     public void shoot () 
 	{
 		if (ammunition > 0 && (Input.GetButtonDown("Fire1") || (Input.GetButton("Fire2") && Time.time > lastShot + fireRate))) 
@@ -40,8 +53,8 @@ namespace RetroFPS.Assets.Scripts {
                 audioSource.PlayOneShot(audioDamage);
             }
 			ammunition--;
-			UpdateAmmoText ();
-		}
+                UpdateTextAmo();
+            }
 
 		if (Input.GetAxis ("Mouse ScrollWheel") > 0f) // forward
 		{
