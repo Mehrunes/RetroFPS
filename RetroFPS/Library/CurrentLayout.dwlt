@@ -748,10 +748,10 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Damian\Desktop\RetroFPS\RetroFPS
+  m_LastProjectPath: C:\Users\Damian\Desktop\Repo\RetroFPS\RetroFPS
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 54}
+    scrollPos: {x: 0, y: 114}
     m_SelectedIDs: d2290000
     m_LastClickedID: 10706
     m_ExpandedIDs: 00000000fa27000004280000182800001c28000024280000362800004e28000066280000ac280000c2280000c4280000c8280000d4280000ec280000082900000e2900001c290000382900003e2900005a2900005e29000080290000a0290000b0290000ce290000d2290000fc2900000e2a00004e2a0000882a0000323500003435000000ca9a3bffffff7f
@@ -770,7 +770,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 11}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -813,18 +813,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c623000000000000042a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: health
-      m_OriginalName: health
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 1948
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
