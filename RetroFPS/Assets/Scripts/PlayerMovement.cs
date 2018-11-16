@@ -73,11 +73,11 @@ public class PlayerMovement : MonoBehaviour
         else if ((Input.GetKey(KeyCode.LeftControl) == true) && (movementVector != Vector3.zero))
         {
             movementVector *= (speed / 4);
-            Noise.radius = 1f;
+            Noise.radius = 3f;
         }
         else if (movementVector == Vector3.zero)
         {
-            Noise.radius = 1f;
+            Noise.radius = 3f;
         }
         else
         {
