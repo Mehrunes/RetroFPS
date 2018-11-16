@@ -6,9 +6,14 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour {
 
     public float lookRadius = 20f;
-    public float meeleRange = 2f;
-    public float rangedRange = 15f;
+    public float meeleRange = 3f;
+    public float maxRangedRange = 20f;
+    public float minRangedRange = 10f;
     public float lookAngle = 120f;
+    public float meeleAttackCooldown = 1f;
+    public float rangedAttackCooldown = 2f;
+    public float rangedAttackPower = 15f;
+    public float meeleAttackPower = 10f;
     public bool playerInFieldOfView = false;
     public float distance;
     public Vector3 direction;
@@ -17,14 +22,15 @@ public class EnemyController : MonoBehaviour {
     public float angleToPlayer;
     public bool alert;
     public bool heardPlayer = false;
-    public bool sawPlayer = false;
-    public bool noAmmo = false;
+    public bool commingBack = true;
+    public bool inRange = false;
 
 
     private Transform target;
     private NavMeshAgent agent;
-    private Transform agentTransform;
     private SphereCollider col;
+    private float rangedAttackTime;
+    private float meeleAttackTime;
 
 
     string Action = "Idle";
@@ -33,9 +39,10 @@ public class EnemyController : MonoBehaviour {
 	void Start () {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-        agentTransform = GetComponent<Transform>();
         col = GetComponent<SphereCollider>();
-        agentStartPosition = agentTransform.position;
+        meeleAttackTime = Time.time;
+        rangedAttackTime = Time.time;
+        agentStartPosition = transform.position;
     }
 	
 	// Update is called once per frame
@@ -58,33 +65,48 @@ public class EnemyController : MonoBehaviour {
                 playerInFieldOfView = false;
             }
         }
-        if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer))                       // Bot widzi lub słyszy gracza
+        if ((((distance <= lookRadius)) && (playerInFieldOfView)) || (heardPlayer))  // Bot widzi lub słyszy gracza
         {
+            FaceTarget();
             agent.SetDestination(target.position);
-            sawPlayer = true;
             lastKnownPlayerPosition = target.position;
             Action = "FollowPlayer";
-            Debug.Log("Follow Player");
-            if (distance <= agent.stoppingDistance)
+            Debug.Log("FollowPlayer");
+            commingBack = false;
+            if ((distance <= maxRangedRange) && (distance >= minRangedRange))                                           // Gracz w zasięgu ataku zasięgowego
             {
-                FaceTarget();
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
+                if (Time.time > rangedAttackTime)
+                {
+                    Action = "RangedAttackPlayer";
+                    Debug.Log("RangedAttackPlayer");
+                    target.GetComponent<health>().TakeDamage(rangedAttackPower);
+                    rangedAttackTime = Time.time + rangedAttackCooldown;
+                }
             }
-                heardPlayer = false;
+            else
+            {
+                agent.isStopped = false;
+            }
         }
-        else if (((distance > lookRadius) || (!playerInFieldOfView)) && (!heardPlayer))                 // Bot nie widzi i nie słyszy gracza
+        else if ((((distance > lookRadius)) || (!playerInFieldOfView)) && (!heardPlayer))                 // Bot nie widzi i nie słyszy gracza
         {
+            agent.isStopped = false;
             agent.SetDestination(lastKnownPlayerPosition);
             Action = "GoToLastKnownPlayerPosition";
-            Debug.Log("Go To Last Known Player Position");
+            Debug.Log("GoToLastKnownPlayerPosition");
         }
-        else if ((agent.velocity == Vector3.zero) && (agentTransform.position == agentStartPosition))   // Bot nie widzi i nie słyszy gracza i stoi na swojej początkowej pozycji
+        else if ((agent.velocity == Vector3.zero) && (transform.position == agentStartPosition))   // Bot nie widzi i nie słyszy gracza i stoi na swojej początkowej pozycji
         {
+            agent.isStopped = true;
             Action = "Idle";
             Debug.Log("Idle");
         }
         else                                                                                            // Bot nie widzi i nie słyszy gracza i nie stoi na swojej początkowej pozycji
         {
-            WaitForSeconds SearchingForPlayer = new WaitForSeconds(5);
+            agent.isStopped = false;
+
             agent.SetDestination(agentStartPosition);
             Action = "GoToStartingPosition";
             Debug.Log("GoToStartingPosition");
@@ -106,10 +128,14 @@ public class EnemyController : MonoBehaviour {
     {
         if ((col.gameObject.tag == "Player") && (distance < meeleRange))
         {
-            Action = "AttackPlayer";
-            Debug.Log("AttackPlayer");
-            col.gameObject.GetComponent<health>().TakeDamage(0.1f);
-            agent.SetDestination(target.position);
+            if (Time.time > meeleAttackTime)
+            {
+                Action = "MeeleAttackPlayer";
+                Debug.Log("MeeleAttackPlayer");
+                col.gameObject.GetComponent<health>().TakeDamage(meeleAttackPower);
+                agent.SetDestination(target.position);
+                meeleAttackTime = Time.time + meeleAttackCooldown;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -118,6 +144,13 @@ public class EnemyController : MonoBehaviour {
         {
             heardPlayer = true;
             lastKnownPlayerPosition = target.position;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "PlayerSound")
+        {
+            heardPlayer = false;
         }
     }
 }
