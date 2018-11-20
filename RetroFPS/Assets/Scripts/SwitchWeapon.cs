@@ -21,11 +21,14 @@ namespace RetroFPS.Assets.Scripts
             else if (Input.GetKeyDown ("2")) 
             {
                 currentWeapon= GetComponent<Pistol>();
+                currentWeapon.UpdateTextAmo();
                 selectedWeaponSprite.sprite = weaponSprites[1];
+                
             } 
             else if (Input.GetKeyDown ("3")) 
             {
                 currentWeapon = GetComponent<RocketLauncher>();
+                currentWeapon.UpdateTextAmo();
                 selectedWeaponSprite.sprite = weaponSprites[2];
             }
         }
