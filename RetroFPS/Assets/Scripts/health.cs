@@ -19,10 +19,20 @@ public class health : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip takingdamage;
 
+    int sound_cooldown = 0;
     // Use this for initialization
     void Start()
     {
         UpdateHealthBar();
+    }
+    public void Update()
+    {
+
+        if (sound_cooldown > 0)
+        {
+            sound_cooldown--;
+        }
+
     }
     void Awake()
     {
@@ -52,8 +62,9 @@ public class health : MonoBehaviour
             Debug.Log("Dead!");
         }
         UpdateHealthBar();
-        if(this.tag=="Player")
+        if (this.tag == "Player" && sound_cooldown == 0)
             PlaySound(takingdamage);
+        sound_cooldown = 40;
 
     }
     public void TakeHealth(float health)
@@ -72,7 +83,7 @@ public class health : MonoBehaviour
         }
         if (hitpoint > maxHitpoint)
             hitpoint = maxHitpoint;
-     
+
         int hitpoint_int = (int)hitpoint;
 
         UpdateHealthBar();
@@ -98,12 +109,12 @@ public class health : MonoBehaviour
     {
         audioSource.clip = sound;
         audioSource.Play();
-        
+
     }
-    
+
     void OnGUI()
     {
-        if (take_damage == true && this.tag=="Player")
+        if (take_damage == true && this.tag == "Player")
         {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), damageindicator, ScaleMode.ScaleToFit);
         }
