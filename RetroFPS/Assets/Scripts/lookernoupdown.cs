@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lookernoupdown : MonoBehaviour {
-    private  GameObject Cameraman;
-	// Use this for initialization
-	void Start () {
-        Cameraman = GameObject.Find("Player/Actor Eyes");
+public class lookernoupdown : MonoBehaviour
+{
+    private Transform target;
+    private float distance;
+    private Vector3 direction;
+    // Use this for initialization
+    void Start()
+    {
+        target = PlayerManager.instance.player.transform;
     }
-    
-	// Update is called once per frame
-	void Update () {
-        
-        Vector3 targetPostition = new Vector3(Cameraman.transform.position.x,
-                               this.transform.position.y,
-                                Cameraman.transform.position.z);
-        this.transform.LookAt(targetPostition);
 
+    // Update is called once per frame
+    void Update()
+    {
+        distance = Vector3.Distance(target.position, transform.position);
+        direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 1000f);
     }
 }
