@@ -7,8 +7,6 @@ public class EnemyController : MonoBehaviour {
 
     public float lookRadius = 20f;
     public float meeleRange = 3f;
-    public float maxRangedRange = 20f;
-    public float minRangedRange = 10f;
     public float lookAngle = 120f;
     public float meeleAttackCooldown = 1f;
     public float rangedAttackCooldown = 2f;
@@ -22,8 +20,8 @@ public class EnemyController : MonoBehaviour {
     public float angleToPlayer;
     public bool alert;
     public bool heardPlayer = false;
-    public bool commingBack = true;
     public bool inRange = false;
+    public bool isRanged = false;
 
 
     private Transform target;
@@ -70,46 +68,27 @@ public class EnemyController : MonoBehaviour {
             FaceTarget();
             agent.SetDestination(target.position);
             lastKnownPlayerPosition = target.position;
-            Action = "FollowPlayer";
-            Debug.Log("FollowPlayer");
-            commingBack = false;
-            if ((distance <= maxRangedRange) && (distance >= minRangedRange))                                           // Gracz w zasięgu ataku zasięgowego
+            Action = "Walk";
+            if ((playerInFieldOfView) && (Time.time > rangedAttackTime))                                          // Bot może atakować
             {
-                agent.isStopped = true;
-                agent.velocity = Vector3.zero;
-                if (Time.time > rangedAttackTime)
-                {
-                    Action = "RangedAttackPlayer";
-                    Debug.Log("RangedAttackPlayer");
-                    target.GetComponent<health>().TakeDamage(rangedAttackPower);
-                    rangedAttackTime = Time.time + rangedAttackCooldown;
-                }
-            }
-            else
-            {
-                agent.isStopped = false;
+                Action = "AttackPlayer";
+                target.GetComponent<health>().TakeDamage(rangedAttackPower);
+                rangedAttackTime = Time.time + rangedAttackCooldown;
             }
         }
         else if ((((distance > lookRadius)) || (!playerInFieldOfView)) && (!heardPlayer))                 // Bot nie widzi i nie słyszy gracza
         {
-            agent.isStopped = false;
             agent.SetDestination(lastKnownPlayerPosition);
-            Action = "GoToLastKnownPlayerPosition";
-            Debug.Log("GoToLastKnownPlayerPosition");
+            Action = "Walk";
         }
         else if ((agent.velocity == Vector3.zero) && (transform.position == agentStartPosition))   // Bot nie widzi i nie słyszy gracza i stoi na swojej początkowej pozycji
         {
-            agent.isStopped = true;
             Action = "Idle";
-            Debug.Log("Idle");
         }
         else                                                                                            // Bot nie widzi i nie słyszy gracza i nie stoi na swojej początkowej pozycji
-        {
-            agent.isStopped = false;
-
+        { 
             agent.SetDestination(agentStartPosition);
-            Action = "GoToStartingPosition";
-            Debug.Log("GoToStartingPosition");
+            Action = "Walk";
         }
 	}
     void FaceTarget()
@@ -119,6 +98,14 @@ public class EnemyController : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
     }
 
+    void FollowPlayer()
+    {
+        agent.SetDestination(target.position);
+        Action = "FollowPlayer";
+    }
+
+
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -126,12 +113,11 @@ public class EnemyController : MonoBehaviour {
     }
     void OnTriggerStay(Collider col)
     {
-        if ((col.gameObject.tag == "Player") && (distance < meeleRange))
+        if ((!isRanged) && (col.gameObject.tag == "Player") && (distance < meeleRange))
         {
             if (Time.time > meeleAttackTime)
             {
-                Action = "MeeleAttackPlayer";
-                Debug.Log("MeeleAttackPlayer");
+                Action = "AttackPlayer";
                 col.gameObject.GetComponent<health>().TakeDamage(meeleAttackPower);
                 agent.SetDestination(target.position);
                 meeleAttackTime = Time.time + meeleAttackCooldown;
