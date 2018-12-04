@@ -10,20 +10,17 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 20f;
     public float verticalVelocity = 0f;
     public int jumpCounter = 0;
-    public float NoiseMultiplier = 1f;
     public bool canWallJump = true;
     public bool canJump = true;
     private Vector3 movementVector;
     private CharacterController controller;
-    public SphereCollider Noise ;
     public AudioSource audioSource;
     public AudioClip audioJump;
     // Use this for initialization
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        controller = GetComponent<CharacterController>();
-        //Noise = GetComponent<SphereCollider>();
+        controller = PlayerManager.instance.player.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -68,20 +65,16 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKey(KeyCode.LeftShift) == true) && (movementVector != Vector3.zero))
         {
             movementVector *= (speed / 2);
-            Noise.radius = 5f;
         }
         else if ((Input.GetKey(KeyCode.LeftControl) == true) && (movementVector != Vector3.zero))
         {
             movementVector *= (speed / 4);
-            Noise.radius = 3f;
         }
         else if (movementVector == Vector3.zero)
         {
-            Noise.radius = 3f;
         }
         else
         {
-            Noise.radius = 10f;
             movementVector *= speed;
         }
         movementVector.y = verticalVelocity;

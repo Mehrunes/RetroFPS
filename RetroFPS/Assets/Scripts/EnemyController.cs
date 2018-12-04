@@ -5,33 +5,31 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
-    public float lookRadius = 20f;
-    public float meeleRange = 3f;
+    public float lookRadius = 30f;
     public float lookAngle = 120f;
-    public float meeleAttackCooldown = 1f;
+    public float meeleAttackCooldown = 2f;
     public float rangedAttackCooldown = 2f;
-    public float rangedAttackPower = 15f;
-    public float meeleAttackPower = 10f;
-    public bool playerInFieldOfView = false;
+    public float rangedAttackPower = 10f;
+    public float meeleAttackPower = 20f;
     public float distance;
     public Vector3 direction;
+    public Vector3 playerPosition;
     public Vector3 lastKnownPlayerPosition;
     public Vector3 agentStartPosition;
     public float angleToPlayer;
     public bool alert;
-    public bool heardPlayer = false;
-    public bool inRange = false;
-    public bool isRanged = false;
-
+    public bool heardPlayer;
+    public bool isRanged;
+    public bool playerInFieldOfView;
+    public string Action = "Idle";
 
     private Transform target;
     private NavMeshAgent agent;
     private SphereCollider col;
-    private float rangedAttackTime;
-    private float meeleAttackTime;
+    private float rangedAttackTime = 0;
+    private float meeleAttackTime = 0;
 
 
-    string Action = "Idle";
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +43,7 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        playerPosition = target.position;
         distance = Vector3.Distance(target.position, transform.position);
         direction = target.position - transform.position;
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z);
@@ -54,87 +53,77 @@ public class EnemyController : MonoBehaviour {
 
         if (((angleToPlayer >= lookAngle * -0.5) && (angleToPlayer <= lookAngle * 0.5)) && (Physics.Raycast(myRay, out hit, lookRadius)))  // Gracz w zasięgu wzroku bota
         {
-            if (hit.collider.tag == "Player")
-            {
-                playerInFieldOfView = true;
-            }
-            else
-            {
-                playerInFieldOfView = false;
-            }
+            playerInFieldOfView = true;
+        }
+        else
+        {
+            playerInFieldOfView = false;
         }
         if ((((distance <= lookRadius)) && (playerInFieldOfView)) || (heardPlayer))  // Bot widzi lub słyszy gracza
         {
-            FaceTarget();
-            agent.SetDestination(target.position);
-            lastKnownPlayerPosition = target.position;
+            alert = true;
+            FollowPlayer();
             Action = "Walk";
-            if ((playerInFieldOfView) && (Time.time > rangedAttackTime))                                          // Bot może atakować
+        }
+        if (((distance > lookRadius) || (!playerInFieldOfView)) && (!heardPlayer) && alert)                 // Bot nie widzi i nie słyszy gracza
+        {
+            if (lastKnownPlayerPosition != Vector3.zero)
             {
-                Action = "AttackPlayer";
-                target.GetComponent<health>().TakeDamage(rangedAttackPower);
-                rangedAttackTime = Time.time + rangedAttackCooldown;
+                agent.SetDestination(lastKnownPlayerPosition);
+                Action = "Walk";
+            }
+            else
+            {
+                Action = "Idle";
             }
         }
-        else if ((((distance > lookRadius)) || (!playerInFieldOfView)) && (!heardPlayer))                 // Bot nie widzi i nie słyszy gracza
-        {
-            agent.SetDestination(lastKnownPlayerPosition);
-            Action = "Walk";
-        }
-        else if ((agent.velocity == Vector3.zero) && (transform.position == agentStartPosition))   // Bot nie widzi i nie słyszy gracza i stoi na swojej początkowej pozycji
+        if (agent.velocity == Vector3.zero && !alert)   // Bot się nie rusza
         {
             Action = "Idle";
         }
-        else                                                                                            // Bot nie widzi i nie słyszy gracza i nie stoi na swojej początkowej pozycji
-        { 
-            agent.SetDestination(agentStartPosition);
-            Action = "Walk";
-        }
 	}
+
     void FaceTarget()
     {
         direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 100f);
     }
 
     void FollowPlayer()
     {
-        agent.SetDestination(target.position);
+        FaceTarget();
+        agent.SetDestination(playerPosition);
+        lastKnownPlayerPosition = playerPosition;
         Action = "FollowPlayer";
-    }
-
-
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
-    }
-    void OnTriggerStay(Collider col)
-    {
-        if ((!isRanged) && (col.gameObject.tag == "Player") && (distance < meeleRange))
+        if ((!isRanged) && (distance <= 3f) && (Time.time >= meeleAttackTime))              // Bot może atakować z bliska
         {
-            if (Time.time > meeleAttackTime)
-            {
-                Action = "AttackPlayer";
-                col.gameObject.GetComponent<health>().TakeDamage(meeleAttackPower);
-                agent.SetDestination(target.position);
-                meeleAttackTime = Time.time + meeleAttackCooldown;
-            }
+            Action = "AttackPlayer";
+            col.gameObject.GetComponent<health>().TakeDamage(meeleAttackPower);
+            FollowPlayer();
+            meeleAttackTime = Time.time + meeleAttackCooldown;
+        }
+        if (isRanged && (playerInFieldOfView) && (Time.time > rangedAttackTime))                    // Bot może atakować zasięgowo
+        {
+            Action = "AttackPlayer";
+            target.GetComponent<health>().TakeDamage(rangedAttackPower);
+            FollowPlayer();
+            rangedAttackTime = Time.time + rangedAttackCooldown;
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PlayerSound")
+        if(other.gameObject.tag == "Playernoize")
         {
             heardPlayer = true;
-            lastKnownPlayerPosition = target.position;
+            FollowPlayer();
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "PlayerSound")
+        if (other.gameObject.tag == "Playernoize")
         {
             heardPlayer = false;
         }
