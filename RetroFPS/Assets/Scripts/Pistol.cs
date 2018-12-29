@@ -18,7 +18,7 @@ namespace RetroFPS.Assets.Scripts {
 
     public AudioSource audioSource;
     public AudioClip audioDamage;
-
+        
     public AudioSource audioSource2;
     public AudioClip audioGun;
 

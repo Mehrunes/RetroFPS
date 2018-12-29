@@ -1,10 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class health : MonoBehaviour
 {
+    public GameObject gun;
+
+    public GameObject playerMove;
+    public GameObject actorEyesScriptCamera;
+
+    public Canvas canvas;
+    public Canvas canvasRestart;
+    
 
     public Image currentHealthBar;
     public Text ratioText;
@@ -23,10 +32,28 @@ public class health : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //wył canvasu restart na starcie
+        canvasRestart.GetComponent<Canvas>().enabled = false;
         UpdateHealthBar();
     }
     public void Update()
     {
+      
+        if (this.name == "Player" && hitpoint<=0)
+        {
+            if (Input.GetKeyDown(KeyCode.R) == true)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                Debug.Log("loooooool!");
+            }
+        }
+        else if (this.name == "Player" && hitpoint <= 0)
+        {
+            if (Input.GetKeyDown(KeyCode.O) == true)
+            {
+                Application.Quit();
+            }
+        }
 
         if (sound_cooldown > 0)
         {
@@ -58,7 +85,21 @@ public class health : MonoBehaviour
         {
             hitpoint = 0;
             hitpoint_int = 0;
-            Destroy(gameObject);
+            if(this.name=="Player")
+            {
+                //ukrycie glownego canvasu
+                canvas.GetComponent<Canvas>().enabled = false;
+                //pokazanie napisu restartu
+                canvasRestart.GetComponent<Canvas>().enabled = true;
+                //wył obiektu całego obiektu gun
+                gun.SetActive(false);
+                //wyl ruchu kamera - wyłączyłbym cały obiekt actorEyes, ale jak przeniose kamere do
+                //obiektu player to nie działa poprawnie
+                actorEyesScriptCamera.GetComponent<camMouseLook>().enabled = false;
+                // wył ruchu gracza
+                playerMove.GetComponent<PlayerMovement>().enabled = false;
+            }else
+                Destroy(gameObject);
             Debug.Log("Dead!");
         }
         UpdateHealthBar();

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace RetroFPS.Assets.Scripts {
     public class RocketLauncher : MonoBehaviour, Weapon
     {
-
+        
         public Text amoText;
 
         public Rigidbody currentWeapon;
@@ -43,6 +43,7 @@ namespace RetroFPS.Assets.Scripts {
             }
         }
 
+       
         public void shoot()
         {
             if (ammunition > 0 && (Input.GetButtonDown("Fire1") || (Input.GetButton("Fire2") && Time.time > lastShot + fireRate)))
@@ -50,10 +51,12 @@ namespace RetroFPS.Assets.Scripts {
                 var rocket = Instantiate(currentWeapon, barrelEnd.position, barrelEnd.rotation);
                 rocket.AddForce(barrelEnd.forward * force);
                 lastShot = Time.time;
+
                 if (audioSource != null)
                 {
                     audioSource.PlayOneShot(audioDamage);
                 }
+             
                 ammunition--;
                 UpdateTextAmo();
 
@@ -68,8 +71,6 @@ namespace RetroFPS.Assets.Scripts {
             {
                 fireRate += 0.01f;
             }
-
-
         }
 
         public void UpdateAmmoText()
