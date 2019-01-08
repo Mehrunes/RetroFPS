@@ -169,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 1909689177352524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -26.2, y: 191.14, z: -946.36}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4250546958503244}
   - {fileID: 4282428678371492}
@@ -278,10 +278,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499680a50da218446b9736c42f5d1df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spFront: {fileID: 21300004, guid: 1ff782af2b52c38439fb9eb1f7ab96c6, type: 3}
-  spLeft: {fileID: 21300002, guid: 1ff782af2b52c38439fb9eb1f7ab96c6, type: 3}
-  spRight: {fileID: 21300000, guid: 1ff782af2b52c38439fb9eb1f7ab96c6, type: 3}
-  spBack: {fileID: 21300006, guid: 1ff782af2b52c38439fb9eb1f7ab96c6, type: 3}
+  timer: 0
+  FrameNum: 0
+  Atak:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Lewo:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Prawo:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Przod:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Tyl:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  idlePrzod: {fileID: 0}
+  idleTyl: {fileID: 0}
+  idleLewo: {fileID: 0}
+  idlePrawo: {fileID: 0}
+  Action: 
   Cameraman: {fileID: 0}
   parentObject: {fileID: 1909689177352524}
   angleObjectCamera: 0
@@ -313,13 +336,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 10
-  meeleRange: 1
   lookAngle: 110
   meeleAttackCooldown: 1
   rangedAttackCooldown: 2
   rangedAttackPower: 15
   meeleAttackPower: 10
-  playerInFieldOfView: 0
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   playerPosition: {x: 0, y: 0, z: 0}
@@ -329,6 +350,7 @@ MonoBehaviour:
   alert: 0
   heardPlayer: 0
   isRanged: 0
+  playerInFieldOfView: 0
   Action: Idle
 --- !u!114 &114198068785343242
 MonoBehaviour:
@@ -389,6 +411,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a343e803f6b174d8f4fb751153aad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 0}
+  playerMove: {fileID: 0}
+  actorEyesScriptCamera: {fileID: 0}
+  canvas: {fileID: 0}
+  canvasRestart: {fileID: 0}
   currentHealthBar: {fileID: 114198068785343242}
   ratioText: {fileID: 114118898511726128}
   hitpoint: 100

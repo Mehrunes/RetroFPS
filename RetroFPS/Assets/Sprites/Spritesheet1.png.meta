@@ -1,0 +1,414 @@
+fileFormatVersion: 2
+guid: 4af1dc96bf180c449b0b15cbdf7a7e4a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Przod0
+    21300002: Przod1
+    21300004: Przod2
+    21300006: Prawo0
+    21300008: Prawo1
+    21300010: Prawo2
+    21300012: Lewo0
+    21300014: Lewo1
+    21300016: Lewo2
+    21300018: Tyl0
+    21300020: Tyl1
+    21300022: Tyl2
+    21300024: Atak0
+    21300026: Atak1
+    21300028: Atak2
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Przod0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 8306
+        width: 998
+        height: 1784
+      alignment: 9
+      pivot: {x: 0.48156133, y: 0.56200737}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e2841129e9afb43a61a60eb375b9b8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Przod1
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 8247
+        width: 1194
+        height: 1874
+      alignment: 9
+      pivot: {x: 0.5201044, y: 0.54404956}
+      border: {x: 0, y: 70, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ff111b454de4924188103b522ef6fd5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Przod2
+      rect:
+        serializedVersion: 2
+        x: 3638
+        y: 8087
+        width: 1051
+        height: 1950
+      alignment: 9
+      pivot: {x: 0.44637778, y: 0.55030346}
+      border: {x: 0, y: 17, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53633e311d05c4647b92910a14f246db
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prawo0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 6242
+        width: 1150
+        height: 1837
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac8c5c00ce5c2e4f85052f5e7fcff52
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prawo1
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 6299
+        width: 1229
+        height: 1877
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff0ef5b1b4da8d4db3b73698552a189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prawo2
+      rect:
+        serializedVersion: 2
+        x: 3475
+        y: 6310
+        width: 1328
+        height: 1762
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 581c797686fe1fb40a61730b5bd1531d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lewo0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4410
+        width: 1126
+        height: 1762
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e222fb5f79d5e247b5107d64c4fb16d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lewo1
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 4419
+        width: 1000
+        height: 1683
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788b6d12644b33d4c9b0d4bd2c9875c3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lewo2
+      rect:
+        serializedVersion: 2
+        x: 3576
+        y: 4489
+        width: 1179
+        height: 1742
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b568916c1b0e504aa7f460e6d124c9d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tyl0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2307
+        width: 1128
+        height: 1943
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 61, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6306ada386a7d7e4f9fb3f3664ca0a44
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tyl1
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 2375
+        width: 1098
+        height: 1883
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcf032ed9a5e7a4d813d4315ae6af5f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tyl2
+      rect:
+        serializedVersion: 2
+        x: 3461
+        y: 2486
+        width: 1312
+        height: 1865
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6d3d6a2cba848546b21f3d650c62f5e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atak0
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 125
+        width: 1124
+        height: 2095
+      alignment: 9
+      pivot: {x: 0.4634406, y: 0.6569178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0370e5bc3675a424ba9e025769450050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atak1
+      rect:
+        serializedVersion: 2
+        x: 1534
+        y: 278
+        width: 1289
+        height: 1871
+      alignment: 9
+      pivot: {x: 0.58114827, y: 0.63377476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42423b9903e30d4ea1bab9d0ffc14a2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atak2
+      rect:
+        serializedVersion: 2
+        x: 3689
+        y: 304
+        width: 1117
+        height: 2058
+      alignment: 9
+      pivot: {x: 0.46990055, y: 0.59983677}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c25388e17e43cd4094cc75433e846e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c27ca1d2689863f42acb0ccd2d4d7769
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

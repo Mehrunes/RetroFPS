@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorControl : MonoBehaviour, INteracts {
     Animator animator;
-    bool isOpen;
+   public bool isOpen;
 
     public void OnUse() {
         if (isOpen == false) { animator.SetTrigger("Open"); isOpen = true; }
