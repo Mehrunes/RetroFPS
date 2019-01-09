@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135174733139119296}
   - component: {fileID: 54726133477000496}
   - component: {fileID: 114237082764942830}
+  - component: {fileID: 114477598517474784}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Bullet
@@ -113,6 +114,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageValue: 9
+--- !u!114 &114477598517474784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1631057127302566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43740f3371aaba545a4fbceaf62ab2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 130
+  current: 0
 --- !u!135 &135174733139119296
 SphereCollider:
   m_ObjectHideFlags: 1

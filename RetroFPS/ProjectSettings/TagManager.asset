@@ -11,6 +11,7 @@ TagManager:
   - Pick up
   - MoveItem
   - Bullet
+  - platform
   layers:
   - Default
   - TransparentFX
