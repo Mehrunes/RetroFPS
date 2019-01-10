@@ -25,7 +25,7 @@ public class Changer : MonoBehaviour {
     private float CameramanRotation;
     public float angleObjectCamera;
 
-	//absolute value
+    //absolute value
     private float Abs(float data)
     {
         if (data < 0)
@@ -60,7 +60,7 @@ public class Changer : MonoBehaviour {
         if (angleObjectCamera >225 && angleObjectCamera <315)
             this.GetComponent<SpriteRenderer>().sprite = spRight;
             */
-
+        Action = GetComponentInParent<EnemyController>().Action;
 
         if (Action == "Idle") {
                 this.GetComponent<SpriteRenderer>().sprite = idlePrzod;//Przod (w sensie patrzy w przod)
@@ -84,7 +84,7 @@ public class Changer : MonoBehaviour {
                 this.GetComponent<SpriteRenderer>().sprite = Prawo[FrameNum];
         }
 
-        if (Action == "Attack")
+        if (Action == "AttackPlayer")
         {
             this.GetComponent<SpriteRenderer>().sprite = Atak[FrameNum];//Przod
 

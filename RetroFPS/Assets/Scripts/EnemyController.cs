@@ -5,14 +5,15 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
-    public float lookRadius;
-    public float lookAngle;
-    public float meeleAttackCooldown;
-    public float rangedAttackCooldown;
-    public float rangedAttackPower;
-    public float meeleAttackPower;
-    public float rangedAttackDistance;
-    public float meeleAttackDistance;
+    public float lookRadius = 15;
+    public float lookAngle = 120;
+    public float meeleAttackCooldown = 2;
+    public float rangedAttackCooldown = 0.5f;
+    public float rangedAttackPower = 10;
+    public float meeleAttackPower = 10;
+    public float rangedAttackDistance = 10;
+    public float meeleAttackDistance = 2;
+    public string Action = "Idle";
     public float distance;
     public float lastPlayerPositionDistance;
     public Vector3 direction;
@@ -23,15 +24,14 @@ public class EnemyController : MonoBehaviour {
     public bool heardPlayer;
     public bool isRanged;
     public bool playerInFieldOfView;
-    public string Action;
     public Rigidbody currentWeapon;
+    public SphereCollider sight;
 
     private Transform target;
     public GameObject player;
     private NavMeshAgent agent;
     private float rangedAttackTime;
     private float meeleAttackTime;
-    private SphereCollider sight;
     private Vector3 origin;
     private Quaternion lookRotation;
     private float shootforce = 250;
@@ -41,11 +41,10 @@ public class EnemyController : MonoBehaviour {
     {
         player = PlayerManager.instance.player;
         target = PlayerManager.instance.player.transform;
-        agent = this.GetComponent<NavMeshAgent>();
-        sight = this.GetComponent<SphereCollider>();
+        agent = GetComponent<NavMeshAgent>();
+        sight = GetComponent<SphereCollider>();
         rangedAttackTime = Time.time;
         meeleAttackTime = Time.time;
-        sight.radius = lookRadius;
     }
 
     // Update is called once per frame
@@ -53,10 +52,10 @@ public class EnemyController : MonoBehaviour {
     {
         playerPosition = target.position;
         distance = Vector3.Distance(target.position, transform.position);
-        lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
         direction = target.position - transform.position;
         origin = new Vector3(transform.position.x, transform.position.y + 1.6f, transform.position.z);
         angleToPlayer = (Vector3.Angle(direction, transform.forward));
+        sight.radius = lookRadius;
 
         if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer))  // Bot widzi lub słyszy gracza
         {
@@ -71,7 +70,7 @@ public class EnemyController : MonoBehaviour {
         {
             FollowPlayer();
         }
-        if ((agent.velocity == Vector3.zero) && (lastPlayerPositionDistance < 1f))   // Bot się nie rusza
+        if ((agent.velocity == Vector3.zero) && (lastPlayerPositionDistance < 1f) && !playerInFieldOfView)  // Bot się nie rusza
         {
             Action = "Idle";
         }
@@ -88,34 +87,40 @@ public class EnemyController : MonoBehaviour {
     {
         if (isRanged)
         {
+            agent.stoppingDistance = rangedAttackDistance;
             if (distance >= rangedAttackDistance)
             {
                 FaceTarget();
                 agent.SetDestination(playerPosition);
-                Action = "FollowPlayer";
-                Debug.Log("FollowPlayer");
+                Action = "Walk";
+                Debug.Log("Walk");
                 lastKnownPlayerPosition = playerPosition;
+                lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
             }
             else
             {
                 AttackPlayer();
             }
         }
+        else if (distance < meeleAttackDistance)
+        {
+            agent.isStopped = true;
+        }
         else
         {
+            agent.isStopped = false;
             FaceTarget();
             agent.SetDestination(playerPosition);
-            Debug.Log("FollowPlayer");
-            Action = "FollowPlayer";
+            Debug.Log("Walk");
+            Action = "Walk";
             lastKnownPlayerPosition = playerPosition;
+            lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
         }
     }
 
     void LostPlayer()
     {
         agent.SetDestination(lastKnownPlayerPosition);
-        Debug.Log("LostPlayer");
-        Action = "LostPlayer";
     }
 
     void AttackPlayer()
