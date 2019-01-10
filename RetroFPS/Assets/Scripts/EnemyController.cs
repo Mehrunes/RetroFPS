@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour {
         {
             FollowPlayer();
         }
-        if ((agent.velocity == Vector3.zero) && (lastPlayerPositionDistance < 1f) && !playerInFieldOfView)  // Bot się nie rusza
+        if ((agent.velocity == Vector3.zero) && (lastPlayerPositionDistance > (lookRadius - 1f)) && !playerInFieldOfView)  // Bot się nie rusza
         {
             Action = "Idle";
         }

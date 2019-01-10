@@ -7801,7 +7801,7 @@ Prefab:
     - target: {fileID: 114177320311068312, guid: 7c691a76278613a4a9e971fa73eacdbc,
         type: 2}
       propertyPath: isRanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114177320311068312, guid: 7c691a76278613a4a9e971fa73eacdbc,
         type: 2}
