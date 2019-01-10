@@ -39,7 +39,7 @@ public class Changer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer++;
-        if (timer > 10) {
+        if (timer > 15) {
             FrameNum++;
             if (FrameNum > 2) { FrameNum = 0; }
 

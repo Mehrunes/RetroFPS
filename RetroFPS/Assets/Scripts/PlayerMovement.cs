@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.Space) == true) && (jumpCounter <= 1))
             {
                 verticalVelocity += jumpSpeed;
-                jumpCounter = 2;
+                jumpCounter ++;
                 PlaySound(audioJump);
             }
         }
