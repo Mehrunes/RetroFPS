@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour {
     public float rangedAttackPower;
     public float meeleAttackPower;
     public float rangedAttackDistance;
+    public float meeleAttackDistance;
     public float distance;
     public float lastPlayerPositionDistance;
     public Vector3 direction;
@@ -23,15 +24,17 @@ public class EnemyController : MonoBehaviour {
     public bool isRanged;
     public bool playerInFieldOfView;
     public string Action;
+    public Rigidbody currentWeapon;
 
     private Transform target;
-    private GameObject player;
+    public GameObject player;
     private NavMeshAgent agent;
     private float rangedAttackTime;
     private float meeleAttackTime;
     private SphereCollider sight;
-
-
+    private Vector3 origin;
+    private Quaternion lookRotation;
+    private float shootforce = 250;
 
     // Use this for initialization
     void Start()
@@ -52,7 +55,7 @@ public class EnemyController : MonoBehaviour {
         distance = Vector3.Distance(target.position, transform.position);
         lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
         direction = target.position - transform.position;
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 1.6f, transform.position.z);
+        origin = new Vector3(transform.position.x, transform.position.y + 1.6f, transform.position.z);
         angleToPlayer = (Vector3.Angle(direction, transform.forward));
 
         if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer))  // Bot widzi lub słyszy gracza
@@ -77,7 +80,7 @@ public class EnemyController : MonoBehaviour {
     void FaceTarget()
     {
         direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 100f);
     }
 
@@ -117,24 +120,27 @@ public class EnemyController : MonoBehaviour {
 
     void AttackPlayer()
     {
-        Debug.Log("AttackPlayer");
-        Action = "AttackPlayer";
-        if (isRanged)
+        if ((isRanged) && (Time.time > rangedAttackTime + rangedAttackCooldown))
         {
-            agent.stoppingDistance = rangedAttackDistance;
-            if (rangedAttackTime <= Time.time)
-            {
-                player.gameObject.GetComponent<health>().TakeDamage(rangedAttackPower);
-                rangedAttackTime = Time.time + rangedAttackCooldown;
-            }
+            Debug.Log("AttackPlayer");
+            Action = "AttackPlayer";
+            var rocket = Instantiate(currentWeapon, transform.position, lookRotation);
+            rocket.AddForce(direction * shootforce);
+            rangedAttackTime = Time.time;
         }
-        else
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ((other.gameObject.tag == "Player") && (distance < meeleAttackDistance))
         {
-           if (meeleAttackTime <= Time.time)
-           {
-                agent.stoppingDistance = 1f;
-                player.gameObject.GetComponent<health>().TakeDamage(meeleAttackPower);
-           }
+            if (Time.time > meeleAttackTime + meeleAttackCooldown)
+            {
+                Debug.Log("AttackPlayer");
+                Action = "AttackPlayer";
+                player.GetComponent<health>().TakeDamage(meeleAttackPower);
+                meeleAttackTime = Time.time;
+            }
         }
     }
 
@@ -145,6 +151,7 @@ public class EnemyController : MonoBehaviour {
             playerInFieldOfView = true;
             alert = true;
         }
+
         if (other.gameObject.tag == "Playernoize")
         {
             heardPlayer = true;
