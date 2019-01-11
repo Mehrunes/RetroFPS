@@ -16,6 +16,7 @@ public class Changer : MonoBehaviour {
     public Sprite idleTyl;
     public Sprite idleLewo;
     public Sprite idlePrawo;
+    public String side;
 
     public String Action;
 
@@ -39,17 +40,16 @@ public class Changer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timer++;
-        if (timer > 15) {
+        if (timer > 20) {
             FrameNum++;
             if (FrameNum > 2) { FrameNum = 0; }
 
             timer = 0;
         }
         //katy oczu i obiektu
-        ObjectRotation = parentObject.transform.rotation.eulerAngles.y +180;
-        CameramanRotation = Cameraman.transform.rotation.eulerAngles.y +180;
-        //wartosc kata miedzy aktorem a spritem nie dziala jak chuj
-        angleObjectCamera = Abs(CameramanRotation - ObjectRotation);
+        //ObjectRotation = parentObject.transform.rotation.eulerAngles.y +180;
+        //CameramanRotation = Cameraman.transform.rotation.eulerAngles.y +180;
+        //angleObjectCamera = Abs(CameramanRotation - ObjectRotation);
 
         /*
             this.GetComponent<SpriteRenderer>().sprite = spBack;//Przod
@@ -61,14 +61,16 @@ public class Changer : MonoBehaviour {
             this.GetComponent<SpriteRenderer>().sprite = spRight;
             */
         Action = GetComponentInParent<EnemyController>().Action;
+        angleObjectCamera = GetComponentInParent<EnemyController>().angleToPlayer;
+        side = GetComponentInParent<EnemyController>().side;
 
         if (Action == "Idle") {
                 this.GetComponent<SpriteRenderer>().sprite = idlePrzod;//Przod (w sensie patrzy w przod)
-            if (angleObjectCamera > 45 && angleObjectCamera < 135)
+            if (angleObjectCamera < 135 && angleObjectCamera > 45 && side == "left")
                 this.GetComponent<SpriteRenderer>().sprite = idleLewo;
-            if (angleObjectCamera < 225 && angleObjectCamera > 135)
+            if (angleObjectCamera <= 45)
                 this.GetComponent<SpriteRenderer>().sprite = idleTyl;//Tyl
-            if (angleObjectCamera > 225 && angleObjectCamera < 315)
+            if (angleObjectCamera<135 && angleObjectCamera>45 && side=="right")
                 this.GetComponent<SpriteRenderer>().sprite = idlePrawo;
 
         }
@@ -76,11 +78,11 @@ public class Changer : MonoBehaviour {
         if (Action == "Walk")
         {
                 this.GetComponent<SpriteRenderer>().sprite = Przod[FrameNum];//Przod
-            if (angleObjectCamera > 45 && angleObjectCamera < 135)
+            if (angleObjectCamera < 135 && angleObjectCamera > 45 && side == "left")
                 this.GetComponent<SpriteRenderer>().sprite = Lewo[FrameNum];
-            if (angleObjectCamera < 225 && angleObjectCamera > 135)
+            if (angleObjectCamera <= 45)
                 this.GetComponent<SpriteRenderer>().sprite = Tyl[FrameNum];//Tyl
-            if (angleObjectCamera > 225 && angleObjectCamera < 315)
+            if (angleObjectCamera < 135 && angleObjectCamera > 45 && side == "right")
                 this.GetComponent<SpriteRenderer>().sprite = Prawo[FrameNum];
         }
 

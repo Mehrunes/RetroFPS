@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour {
     public bool playerInFieldOfView;
     public Rigidbody currentWeapon;
     public SphereCollider sight;
+    public float sideToPlayer;
+    public string side;
 
     private Transform target;
     public GameObject player;
@@ -55,6 +57,8 @@ public class EnemyController : MonoBehaviour {
         direction = target.position - transform.position;
         origin = new Vector3(transform.position.x, transform.position.y + 1.6f, transform.position.z);
         angleToPlayer = (Vector3.Angle(direction, transform.forward));
+        sideToPlayer = (Vector3.Angle(direction, transform.right));
+        if (sideToPlayer < 90) side = "right"; else side = "left";
         sight.radius = lookRadius;
 
         if (((distance <= lookRadius) && (playerInFieldOfView)) || (heardPlayer))  // Bot widzi lub słyszy gracza
