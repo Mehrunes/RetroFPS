@@ -61,10 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Aktywacjaskryptu.cs" />
     <Compile Include="Assets\Attach.cs" />
+    <Compile Include="Assets\EnemyBulletDamage.cs" />
     <Compile Include="Assets\keepposition.cs" />
     <Compile Include="Assets\missja.cs" />
     <Compile Include="Assets\rotate.cs" />
+    <Compile Include="Assets\SayAndRun.cs" />
     <Compile Include="Assets\Scripts\Ammunition.cs" />
     <Compile Include="Assets\Scripts\Apteczka.cs" />
     <Compile Include="Assets\Scripts\AudioSounds.cs" />
@@ -98,6 +101,7 @@
     <Compile Include="Assets\Scripts\WallDamage.cs" />
     <Compile Include="Assets\Scripts\WallDamagePenalty.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
+    <Compile Include="Assets\Teleport.cs" />
     <Compile Include="Assets\Textures\Testsprite\CameraController.cs" />
     <Compile Include="Assets\Textures\Testsprite\CameraDirection.cs" />
     <Compile Include="Assets\Textures\Testsprite\Enums.cs" />

@@ -7,6 +7,7 @@ public class missja : MonoBehaviour
 {
     public string flowtext = "";
     public Text ObjText;
+    public bool deletus = true;
     // Use this for initialization
 
     /* IEnumerator ExecuteAfterTime(float time)
@@ -27,7 +28,8 @@ public class missja : MonoBehaviour
         {
             ObjectiveText();
             //ExecuteAfterTime(1);
-            Destroy(this.gameObject);
+            if(deletus==true)
+                Destroy(this.gameObject);
         }
     }
 }
