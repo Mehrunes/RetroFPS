@@ -168,13 +168,17 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        agent.isStopped = true;
         if (player.GetComponent<health>().hitpoint == 0)
         {
             agent.isStopped = true;
             Action = "Idle";
         }
-        else if ((other.gameObject.tag == "Player") && (distance < meeleAttackDistance) && !isRanged)
+        else if ((other.gameObject.tag == "Player") && (angleToPlayer < lookAngle * 0.5))
+        {
+            playerInFieldOfView = true;
+            alert = true;
+        }
+        if ((other.gameObject.tag == "Player") && (distance < meeleAttackDistance) && !isRanged)
         {
             if (Time.time > meeleAttackTime + meeleAttackCooldown)
             {

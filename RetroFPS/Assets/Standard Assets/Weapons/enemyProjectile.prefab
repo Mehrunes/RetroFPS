@@ -56,8 +56,8 @@ GameObject:
   - component: {fileID: 23451769966078912}
   - component: {fileID: 135312864875583704}
   - component: {fileID: 54293352464744382}
-  - component: {fileID: 114339160980075554}
   - component: {fileID: 114711386486754506}
+  - component: {fileID: 114423963095780060}
   m_Layer: 0
   m_Name: enemyProjectile
   m_TagString: Untagged
@@ -205,7 +205,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &114339160980075554
+--- !u!114 &114423963095780060
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,10 +213,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1875590823141194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3bb2c5a2fe71ac45b42dc895e62640e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3899843fc9934d04ca20747da3841510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageValue: 40
+  DamageValue: 10
 --- !u!114 &114458373093260804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,7 +248,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1875590823141194}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
