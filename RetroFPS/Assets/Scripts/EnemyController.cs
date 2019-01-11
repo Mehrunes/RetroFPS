@@ -79,6 +79,7 @@ public class EnemyController : MonoBehaviour
         if ((agent.velocity == Vector3.zero) && (lastPlayerPositionDistance > (lookRadius - 1f)) && !playerInFieldOfView)  // Bot się nie rusza
         {
             Action = "Idle";
+            alert = false;
         }
         if ((isRanged) && (Action == "AttackPlayer") && (distance > rangedAttackDistance))
         {
@@ -105,42 +106,63 @@ public class EnemyController : MonoBehaviour
     void FollowPlayer()
     {
         agent.isStopped = false;
-        lastKnownPlayerPosition = playerPosition;
-        lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
-        if (isRanged)
+        if (!alert)
         {
-
-            if ((distance >= rangedAttackDistance) && (playerInFieldOfView))
+            AlertNerbyEnemies();
+            alert = true;
+        }
+        else
+        {
+            lastKnownPlayerPosition = playerPosition;
+            lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
+            if (isRanged)
             {
-                FaceTarget();
+
+                if ((distance >= rangedAttackDistance) && (playerInFieldOfView))
+                {
+                    FaceTarget();
+                    agent.isStopped = false;
+                    agent.SetDestination(playerPosition);
+                    Action = "Walk";
+                    lastKnownPlayerPosition = playerPosition;
+                    lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
+                }
+                else if (!playerInFieldOfView)
+                {
+                    agent.isStopped = false;
+                }
+                else if (playerInFieldOfView && (distance < rangedAttackDistance))
+                {
+                    agent.isStopped = true;
+                    AttackPlayer();
+                }
+            }
+            else if (distance < meeleAttackDistance)
+            {
+                agent.isStopped = true;
+            }
+            else
+            {
                 agent.isStopped = false;
+                FaceTarget();
                 agent.SetDestination(playerPosition);
                 Action = "Walk";
                 lastKnownPlayerPosition = playerPosition;
                 lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
             }
-            else if (!playerInFieldOfView)
-            {
-                agent.isStopped = false;
-            }
-            else if (playerInFieldOfView && (distance < rangedAttackDistance))
-            {
-                agent.isStopped = true;
-                AttackPlayer();
-            }
         }
-        else if (distance < meeleAttackDistance)
+    }
+
+    void AlertNerbyEnemies()
+    {
+        var hitColliders = Physics.OverlapSphere(transform.position, lookRadius);
+        foreach (var collider in hitColliders)
         {
-            agent.isStopped = true;
-        }
-        else
-        {
-            agent.isStopped = false;
-            FaceTarget();
-            agent.SetDestination(playerPosition);
-            Action = "Walk";
-            lastKnownPlayerPosition = playerPosition;
-            lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
+            if (collider != null && collider.gameObject.tag == "NPC")
+            {
+                collider.gameObject.GetComponent<EnemyController>().alert = true;
+                collider.gameObject.GetComponent<EnemyController>().FollowPlayer();
+            }
         }
     }
 
@@ -176,7 +198,6 @@ public class EnemyController : MonoBehaviour
         else if ((other.gameObject.tag == "Player") && (angleToPlayer < lookAngle * 0.5))
         {
             playerInFieldOfView = true;
-            alert = true;
         }
         if ((other.gameObject.tag == "Player") && (distance < meeleAttackDistance) && !isRanged)
         {
@@ -198,7 +219,6 @@ public class EnemyController : MonoBehaviour
         if ((other.gameObject.tag == "Player") && (angleToPlayer < lookAngle * 0.5))
         {
             playerInFieldOfView = true;
-            alert = true;
         }
 
         if (other.gameObject.tag == "Playernoize")
@@ -207,11 +227,16 @@ public class EnemyController : MonoBehaviour
             playerInFieldOfView = true;
             FollowPlayer();
         }
-        if ((other.gameObject.tag == "Bullet") || (alert))
+        if (other.gameObject.tag == "Bullet")
         {
-            if (other.gameObject.tag == "NPC")
+            var hitColliders = Physics.OverlapSphere(transform.position, lookRadius);
+            foreach (var collider in hitColliders)
             {
-                other.gameObject.GetComponent<EnemyController>().FollowPlayer();
+                if (collider != null && collider.gameObject.tag == "NPC")
+                {
+                    collider.gameObject.GetComponent<EnemyController>().alert = true;
+                    collider.gameObject.GetComponent<EnemyController>().FollowPlayer();
+                }
             }
         }
     }
