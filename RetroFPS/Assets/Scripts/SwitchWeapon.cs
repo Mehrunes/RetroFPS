@@ -17,6 +17,7 @@ namespace RetroFPS.Assets.Scripts
             if (Input.GetKeyDown ("1")) 
             {
                 currentWeapon= weapons[0];
+                currentWeapon.UpdateTextAmo();
                 selectedWeaponSprite.sprite = weaponSprites[0];
             } 
             else if (Input.GetKeyDown ("2")) 
