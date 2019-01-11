@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
 
     public float lookRadius = 15;
     public float lookAngle = 120;
-    public float meeleAttackCooldown = 2;
-    public float rangedAttackCooldown = 0.5f;
-    public float rangedAttackPower = 10;
-    public float meeleAttackPower = 10;
-    public float rangedAttackDistance = 10;
+    public float meeleAttackPower = 7f;
+    public float rangedAttackDistance = 10f;
     public float meeleAttackDistance = 2;
     public string Action = "Idle";
     public float distance;
     public float lastPlayerPositionDistance;
+    public float playerSpawnPosition;
     public Vector3 direction;
     public Vector3 playerPosition;
     public Vector3 lastKnownPlayerPosition;
@@ -26,11 +25,13 @@ public class EnemyController : MonoBehaviour {
     public bool playerInFieldOfView;
     public Rigidbody currentWeapon;
     public SphereCollider sight;
+    public GameObject player;
     public float sideToPlayer;
     public string side;
 
+    private float rangedAttackCooldown = 0.33f;
+    private float meeleAttackCooldown = 0.33f;
     private Transform target;
-    public GameObject player;
     private NavMeshAgent agent;
     private float rangedAttackTime;
     private float meeleAttackTime;
@@ -47,6 +48,7 @@ public class EnemyController : MonoBehaviour {
         sight = GetComponent<SphereCollider>();
         rangedAttackTime = Time.time;
         meeleAttackTime = Time.time;
+        lastKnownPlayerPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -78,6 +80,19 @@ public class EnemyController : MonoBehaviour {
         {
             Action = "Idle";
         }
+        if ((isRanged) && (Action == "AttackPlayer") && (distance > rangedAttackDistance))
+        {
+            if ((agent.velocity == Vector3.zero) && (playerInFieldOfView))
+            {
+                Action = "Walk";
+                FollowPlayer();
+            }
+            else
+            {
+                Action = "Idle";
+                alert = false;
+            }
+        }
     }
 
     void FaceTarget()
@@ -89,20 +104,28 @@ public class EnemyController : MonoBehaviour {
 
     void FollowPlayer()
     {
+        agent.isStopped = false;
+        lastKnownPlayerPosition = playerPosition;
+        lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
         if (isRanged)
         {
-            agent.stoppingDistance = rangedAttackDistance;
-            if (distance >= rangedAttackDistance)
+
+            if ((distance >= rangedAttackDistance) && (playerInFieldOfView))
             {
                 FaceTarget();
+                agent.isStopped = false;
                 agent.SetDestination(playerPosition);
                 Action = "Walk";
-                Debug.Log("Walk");
                 lastKnownPlayerPosition = playerPosition;
                 lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
             }
-            else
+            else if (!playerInFieldOfView)
             {
+                agent.isStopped = false;
+            }
+            else if (playerInFieldOfView && (distance < rangedAttackDistance))
+            {
+                agent.isStopped = true;
                 AttackPlayer();
             }
         }
@@ -115,7 +138,6 @@ public class EnemyController : MonoBehaviour {
             agent.isStopped = false;
             FaceTarget();
             agent.SetDestination(playerPosition);
-            Debug.Log("Walk");
             Action = "Walk";
             lastKnownPlayerPosition = playerPosition;
             lastPlayerPositionDistance = Vector3.Distance(lastKnownPlayerPosition, transform.position);
@@ -129,9 +151,14 @@ public class EnemyController : MonoBehaviour {
 
     void AttackPlayer()
     {
-        if ((isRanged) && (Time.time > rangedAttackTime + rangedAttackCooldown))
+        agent.isStopped = true;
+        if (player.GetComponent<health>().hitpoint == 0)
         {
-            Debug.Log("AttackPlayer");
+            agent.isStopped = true;
+            Action = "Idle";
+        }
+        else if ((isRanged) && (Time.time > rangedAttackTime + rangedAttackCooldown))
+        {
             Action = "AttackPlayer";
             var rocket = Instantiate(currentWeapon, transform.position, lookRotation);
             rocket.AddForce(direction * shootforce);
@@ -141,21 +168,30 @@ public class EnemyController : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if ((other.gameObject.tag == "Player") && (distance < meeleAttackDistance))
+        agent.isStopped = true;
+        if (player.GetComponent<health>().hitpoint == 0)
+        {
+            agent.isStopped = true;
+            Action = "Idle";
+        }
+        else if ((other.gameObject.tag == "Player") && (distance < meeleAttackDistance) && !isRanged)
         {
             if (Time.time > meeleAttackTime + meeleAttackCooldown)
             {
-                Debug.Log("AttackPlayer");
                 Action = "AttackPlayer";
                 player.GetComponent<health>().TakeDamage(meeleAttackPower);
                 meeleAttackTime = Time.time;
             }
         }
+        if ((other.gameObject.tag == "Player") && (angleToPlayer > lookAngle * 0.5))
+        {
+            playerInFieldOfView = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.tag == "Player") && (angleToPlayer > lookAngle * 0.5))
+        if ((other.gameObject.tag == "Player") && (angleToPlayer < lookAngle * 0.5))
         {
             playerInFieldOfView = true;
             alert = true;
@@ -169,7 +205,7 @@ public class EnemyController : MonoBehaviour {
         }
         if ((other.gameObject.tag == "Bullet") || (alert))
         {
-            if (other.gameObject.tag == "NPC") 
+            if (other.gameObject.tag == "NPC")
             {
                 other.gameObject.GetComponent<EnemyController>().FollowPlayer();
             }
