@@ -71,7 +71,10 @@ public class EnemyController : MonoBehaviour
         {
             LostPlayer();
         }
-
+        if (GetComponent<health>().hitpoint < GetComponent<health>().getMaxHiPoint())
+        {
+            FollowPlayer();
+        }
         if (alert && (distance <= lookRadius))
         {
             FollowPlayer();
