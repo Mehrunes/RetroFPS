@@ -3657,15 +3657,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 164.6
+      value: 169.91
       objectReference: {fileID: 0}
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -9.47
+      value: -9.77
       objectReference: {fileID: 0}
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1317.14
+      value: -1306.67
       objectReference: {fileID: 0}
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalRotation.x
@@ -28348,7 +28348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowtext: 
   CoMaMowic: {fileID: 1605079168}
-  kwestia: {fileID: 8300000, guid: c794c46e28ae3b140ad0212eef05909b, type: 3}
+  kwestia: {fileID: 8300000, guid: 41935755da0a58944b3ab5001ca20d32, type: 3}
   deletus: 1
 --- !u!1 &1054027151
 GameObject:
@@ -42547,15 +42547,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 164.45
+      value: 167.595
       objectReference: {fileID: 0}
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -9.47
+      value: -9.92
       objectReference: {fileID: 0}
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1321.96
+      value: -1309.782
       objectReference: {fileID: 0}
     - target: {fileID: 4293751439926922, guid: e56c95ac86b911d47bde4c9344806c17, type: 2}
       propertyPath: m_LocalRotation.x
@@ -56430,7 +56430,7 @@ BoxCollider:
   m_GameObject: {fileID: 2112337298}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
