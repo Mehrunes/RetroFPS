@@ -13,7 +13,7 @@ namespace RetroFPS.Assets.Scripts {
 	public long  maxAmmunition = long.MaxValue;
     public long ammunition = long.MaxValue;
 
-    public float fireRate = 0.14f;
+    public float fireRate = 0.10f;
 	public float lastShot = 0.0f;
 
     public AudioSource audioSource;
@@ -54,18 +54,7 @@ namespace RetroFPS.Assets.Scripts {
             }
 			ammunition--;
                 UpdateTextAmo();
-            }
-
-		if (Input.GetAxis ("Mouse ScrollWheel") > 0f) // forward
-		{
-			fireRate -= 0.01f;
-		}
-		
-		if (Input.GetAxis ("Mouse ScrollWheel") < 0f) // backwards
-		{
-			fireRate += 0.01f;
-		}
-        
+        }
 
 	}
 

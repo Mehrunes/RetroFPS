@@ -38,15 +38,13 @@ namespace RetroFPS.Assets.Scripts {
 
             if (ammunition >= 0)
             {
-
                 amoText.text = ammunition.ToString() + "/" + maxAmmunition.ToString();
             }
         }
-
        
         public void shoot()
         {
-            if (ammunition > 0 && (Input.GetButtonDown("Fire1") || (Input.GetButton("Fire2") && Time.time > lastShot + fireRate)))
+            if (ammunition > 0 && (Input.GetButtonDown("Fire1")))
             {
                 var rocket = Instantiate(currentWeapon, barrelEnd.position, barrelEnd.rotation);
                 rocket.AddForce(barrelEnd.forward * force);
@@ -60,16 +58,6 @@ namespace RetroFPS.Assets.Scripts {
                 ammunition--;
                 UpdateTextAmo();
 
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
-            {
-                fireRate -= 0.01f;
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
-            {
-                fireRate += 0.01f;
             }
         }
 

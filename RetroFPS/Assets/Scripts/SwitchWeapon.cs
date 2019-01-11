@@ -11,23 +11,24 @@ namespace RetroFPS.Assets.Scripts
         public Image selectedWeaponSprite;
         public List<Weapon> weapons = new List<Weapon>();
         public List<Sprite> weaponSprites = new List<Sprite>();
+    
         public void switchWeapon () 
         {
             if (Input.GetKeyDown ("1")) 
             {
-                currentWeapon= GetComponent<RaycasyWeapon>();
+                currentWeapon= weapons[0];
                 selectedWeaponSprite.sprite = weaponSprites[0];
             } 
             else if (Input.GetKeyDown ("2")) 
             {
-                currentWeapon= GetComponent<Pistol>();
+                currentWeapon= weapons[1];
                 currentWeapon.UpdateTextAmo();
                 selectedWeaponSprite.sprite = weaponSprites[1];
                 
             } 
             else if (Input.GetKeyDown ("3")) 
             {
-                currentWeapon = GetComponent<RocketLauncher>();
+                currentWeapon = weapons[2];
                 currentWeapon.UpdateTextAmo();
                 selectedWeaponSprite.sprite = weaponSprites[2];
             }
@@ -35,7 +36,10 @@ namespace RetroFPS.Assets.Scripts
 
         void Start () 
         {
-            currentWeapon = GetComponent<RaycasyWeapon>();
+            weapons.Add(GetComponent<RaycasyWeapon>());
+            weapons.Add(GetComponent<Pistol>());
+            weapons.Add(GetComponent<RocketLauncher>());
+            currentWeapon = weapons[0];
             selectedWeaponSprite.sprite = weaponSprites[0];
         }
 
