@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-E:/Pliki/Pulpit/Ide po Bułki/RetorFPS.exe
+E:/Pliki/Pulpit/IDE PO BUŁKI FINAL VER 45/Ide po Bulki.exe
 SceneListBegin?
 Assets/Scenes/Scena testowa 1.unity
 SceneListEnd?
@@ -25,6 +25,7 @@ b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
 4768e652a3323378523842ae9cc62add Assembly-CSharp.dll:.WallDamage
 2a5425e4520861e4177e749cfd339258 Assembly-CSharp.dll:.DestroyObjectBullet
 71000a97f5109c0e71f2fc8c7c6541da Assembly-CSharp.dll:.Teleport
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PistolAmmunition
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Ammunition
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.lookernoupdown
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.keepposition
@@ -176,6 +177,7 @@ e53cc67d84060d628c7f03fc725766d8 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 392c5b921098bd4c139d9146d0efa6d7 Unity.TextMeshPro.dll:TMPro.TMP_Settings
 4768e652a3323378523842ae9cc62add Assembly-CSharp.dll:.EnemyBulletDamage
 4986b1dbdc014ed4a6227566281c3e32 Assembly-CSharp.dll:.Pickup
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.RocketLauncherAmmunition
 ddcae71b3f91386237efd012a9eef2be UnityEngine.TestRunner.dll:UnityEngine.TestTools.EnumerableSetUpTearDownCommandState
 486cd95c82d8305219c352c06b776e1f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
@@ -214,5 +216,7 @@ c632ad118d47367ef854a0c180f66d53 Assembly-CSharp.dll:.Controls
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 7332c87c862367ce60c19459c2370559 Assembly-CSharp.dll:.missja
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
-665655bc2d398c2aeac96a5ca0970c86 Assembly-CSharp.dll:.EnemyController
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.amunicja
+4768e652a3323378523842ae9cc62add Assembly-CSharp.dll:.EnemyBullets
+c0d6359af9ae681811ee814fbf00a8af Assembly-CSharp.dll:.EnemyController
 ab2803ac39dca22779a75b02fe9f6b6c Assembly-CSharp.dll:.DoorControl

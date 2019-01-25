@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         controller = PlayerManager.instance.player.GetComponent<CharacterController>();
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

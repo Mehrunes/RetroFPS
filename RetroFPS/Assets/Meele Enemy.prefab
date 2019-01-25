@@ -275,15 +275,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 10
   lookAngle: 110
-  meeleAttackCooldown: 1
-  rangedAttackCooldown: 2
-  rangedAttackPower: 15
   meeleAttackPower: 10
   rangedAttackDistance: 100
   meeleAttackDistance: 2
   Action: Idle
   distance: 0
   lastPlayerPositionDistance: 0
+  playerSpawnPosition: 0
   direction: {x: 0, y: 0, z: 0}
   playerPosition: {x: 0, y: 0, z: 0}
   lastKnownPlayerPosition: {x: 0, y: 0, z: 0}
@@ -295,9 +293,9 @@ MonoBehaviour:
   currentWeapon: {fileID: 54726133477000496, guid: d5bd56e4d2c75ec489ca4a13fa288b89,
     type: 2}
   sight: {fileID: 135797522541706226}
+  player: {fileID: 0}
   sideToPlayer: 0
   side: 
-  player: {fileID: 0}
 --- !u!114 &114378868732357796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -505,8 +503,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 3
-  m_Acceleration: 8
+  m_Speed: 8
+  m_Acceleration: 16
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 1

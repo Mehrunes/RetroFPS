@@ -91,10 +91,12 @@
     <Compile Include="Assets\Scripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\PickupAndMove.cs" />
     <Compile Include="Assets\Scripts\Pistol.cs" />
+    <Compile Include="Assets\Scripts\PistolAmmunition.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\RaycasyWeapon.cs" />
     <Compile Include="Assets\Scripts\RocketLauncher.cs" />
+    <Compile Include="Assets\Scripts\RocketLauncherAmmunition.cs" />
     <Compile Include="Assets\Scripts\spawnHP.cs" />
     <Compile Include="Assets\Scripts\SplashDamage.cs" />
     <Compile Include="Assets\Scripts\SwitchWeapon.cs" />
